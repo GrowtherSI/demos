@@ -68,6 +68,27 @@ function GitHubIcon() {
   );
 }
 
+/** Lucide "download" (ISC License, https://lucide.dev). */
+function DownloadIcon() {
+  return (
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 15V3" />
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <path d="m7 10 5 5 5-5" />
+    </svg>
+  );
+}
+
 export function DemoHeader({
   title,
   story,
@@ -101,13 +122,16 @@ export function DemoHeader({
         <a
           className="gw-cta"
           href={SITE_URL}
+          aria-label="Download C5"
           onClick={(e) => {
             e.preventDefault();
             void requestDownload({ story });
           }}
         >
           <span className="gw-cta-long">Download C5</span>
-          <span className="gw-cta-short">Download</span>
+          <span className="gw-cta-short">
+            <DownloadIcon />
+          </span>
         </a>
       </div>
     </header>

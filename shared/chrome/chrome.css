@@ -496,14 +496,17 @@
   .gw-title {
     font-size: 15px;
   }
-  .gw-cta {
-    padding: 9px 12px;
+  /* Icon-only Download on phones, so the other buttons keep their room. */
+  .gw-header .gw-cta {
+    display: grid;
+    place-items: center;
+    padding: 7px 10px;
   }
   .gw-cta-long {
     display: none;
   }
   .gw-cta-short {
-    display: inline;
+    display: inline-grid;
   }
   .gw-pill {
     padding: 7px 8px;
@@ -546,7 +549,7 @@
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 300px) {
   .gw-source {
     display: none;
   }
