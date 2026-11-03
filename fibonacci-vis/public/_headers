@@ -2,12 +2,14 @@
 # static assets). The /v1/version API sets its own in ../shared/worker.
 #
 # CSP: everything is self-hosted — scripts, styles, fonts, images — and the only
-# request the page makes is same-origin /v1/version. 'unsafe-inline' is for
+# request the page makes is same-origin /v1/version. The one exception is
+# Cloudflare Web Analytics (cookieless), which the growther.si zone injects into
+# every page: its beacon script and the endpoint it reports to. 'unsafe-inline' is for
 # style ATTRIBUTES only (the shared download kit styles inline); no inline
 # script runs. frame-ancestors lets Growther.si's own sites embed the demo and
 # nobody else.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self' https://growther.si https://*.growther.si; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self' https://growther.si https://*.growther.si; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
