@@ -9,6 +9,32 @@ not part of this repository and is not licensed under the MIT License: it
 remains proprietary to Growther.si and is governed by the Growther.si End User
 License Agreement and Terms of Service at https://growther.si/terms.
 
+## No warranty; educational use
+
+The demos are provided "AS IS", without warranty of any kind, as stated in the
+MIT License. They are educational and illustrative examples, not production
+software, and are not supported products of Growther.si. You are responsible
+for reviewing, testing and securing any code you take from them before relying
+on it.
+
+## Trademarks
+
+"Growther", "Growther.si", "C5", "Mothership", the Growther.si logo and the
+other Growther.si marks are trademarks of Growther.si. The MIT License covers
+the code; it grants no right to use these marks. The logo files under
+shared/chrome/assets/ are included so the demos render as published, and may
+not be used to brand derivative works or to imply endorsement. Forks should
+remove the shared header and footer, or replace them with their own branding.
+
+## Third-party components
+
+Each demo lists its runtime dependencies in its own package.json; they are
+installed from npm and remain under their own licenses. The repository itself
+redistributes these third-party files:
+
+- shared/chrome/assets/fonts/ — Convergence, Space Grotesk and IBM Plex Mono,
+  each under the SIL Open Font License 1.1 (license texts alongside the fonts).
+
 ## Patent Notice
 
 Growther.si C5 and Mothership mechanisms are covered by U.S. Patent Application No. 64/130,388.

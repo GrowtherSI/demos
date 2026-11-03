@@ -37,8 +37,9 @@ bower_components
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
+# Dependency directories — every demo installs its own, at any depth
 node_modules/
+**/node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -148,5 +149,15 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 
+# Cloudflare Wrangler local state and secrets
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# macOS
+.DS_Store
+
 # Claude Code
 CLAUDE.md
+.claude/worktrees/
+.claude/settings.local.json
