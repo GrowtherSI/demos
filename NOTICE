@@ -34,6 +34,8 @@ redistributes these third-party files:
 
 - shared/chrome/assets/fonts/ — Convergence, Space Grotesk and IBM Plex Mono,
   each under the SIL Open Font License 1.1 (license texts alongside the fonts).
+- shared/chrome/AboutModal.tsx — the "info" icon from Lucide
+  (https://lucide.dev), ISC License, Copyright (c) Lucide Contributors.
 
 ## Patent Notice
 

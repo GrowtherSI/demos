@@ -5,8 +5,8 @@ path (`../shared/...`), and `chrome/vite.mjs` sets Vite up for that.
 
 ## chrome/
 
-The sticky Growther.si header (brand left, demo title centred, Source and
-**Download C5** right) and footer (the growther.si footer: links, socials,
+The sticky Growther.si header (brand left, demo title centred; right, a
+"How it was made" info button, Source and **Download C5**) and footer (the growther.si footer: links, socials,
 tagline, legal line; collapsible on phones). Framework-agnostic from the demo's
 side — one call mounts it:
 
@@ -17,8 +17,15 @@ mountDemoChrome({
   title: 'Fibonacci Visualizer',
   story: 'demo-fibonacci-vis', // source label for the download kit
   sourceUrl: 'https://github.com/GrowtherSI/demos/tree/main/fibonacci-vis',
+  about: { prompt, hours, costUsd, passedSteps, reworkSteps, tokens,
+           inference, humanHours, humanRateUsd }, // optional; see AboutModal.tsx
 });
 ```
+
+`about` drives the info button's modal: the prompt C5 was given, what the build
+took (time, cost, steps passed and reworked, tokens), where the models ran, and
+the human-developer comparison — whose hours and hourly rate are stated in the
+copy so readers can see the assumption.
 
 Its colours are scoped to `.gw-chrome`, so they never touch the demo's own
 styles. The demo positions itself with `--gw-header-h` and `--gw-footer-h`,

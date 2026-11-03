@@ -23,6 +23,7 @@ import {
   warmRelease,
 } from "../downloadKit";
 import { DemoFooter, DemoHeader, SITE_URL, type DemoHeaderProps } from "./DemoChrome";
+export type { DemoAbout } from "./AboutModal";
 import logoUrl from "./assets/logo.png";
 import "./chrome.css";
 

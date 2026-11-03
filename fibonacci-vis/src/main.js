@@ -136,5 +136,22 @@ mountDemoChrome({
   title: 'Fibonacci Visualizer',
   story: 'demo-fibonacci-vis',
   sourceUrl: 'https://github.com/GrowtherSI/demos/tree/main/fibonacci-vis',
+  // How Growther.si C5 built this demo, shown by the header's info button.
+  about: {
+    prompt:
+      'Write a responsive web app that calculates Fibonacci patterns and displays them in creative ways with threejs.',
+    hours: 5,
+    costUsd: 33.38,
+    passedSteps: 204,
+    reworkSteps: 22,
+    tokens: '1.1M',
+    inference: [
+      { where: 'Cloud', via: 'Anthropic API' },
+      { where: 'Local', via: 'OpenClaw' },
+      { where: 'Local', via: 'LM Studio' },
+    ],
+    humanHours: 4,
+    humanRateUsd: 50,
+  },
 });
 start();

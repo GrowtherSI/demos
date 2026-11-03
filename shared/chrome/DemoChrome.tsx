@@ -1,7 +1,8 @@
 /**
  * The header and footer every Growther.si demo shares.
  *
- * Header: linked brand left, the demo's title centred, Source + Download right.
+ * Header: linked brand left, the demo's title centred; right, "How it was made"
+ * (AboutModal.tsx), Source and Download.
  * Footer: the growther.si footer (growther-marketing/src/components/chrome.tsx)
  * — same links, socials, mark, rotating tagline and legal line — made sticky.
  *
@@ -17,6 +18,7 @@
  */
 import { useLayoutEffect, useRef, useState } from "react";
 import { requestDownload, SocialLinks } from "../downloadKit";
+import { AboutButton, type DemoAbout } from "./AboutModal";
 import logoUrl from "./assets/logo.png";
 
 export const SITE_URL = "https://growther.si";
@@ -51,6 +53,8 @@ export interface DemoHeaderProps {
   story: string;
   /** Where this demo's source lives; omit to hide the Source pill. */
   sourceUrl?: string;
+  /** How C5 built this demo; omit to hide the info button. */
+  about?: DemoAbout;
 }
 
 function GitHubIcon() {
@@ -64,7 +68,12 @@ function GitHubIcon() {
   );
 }
 
-export function DemoHeader({ title, story, sourceUrl }: DemoHeaderProps) {
+export function DemoHeader({
+  title,
+  story,
+  sourceUrl,
+  about,
+}: DemoHeaderProps) {
   const ref = useHeightVar<HTMLElement>("--gw-header-h");
   return (
     <header ref={ref} className="gw-header">
@@ -76,6 +85,7 @@ export function DemoHeader({ title, story, sourceUrl }: DemoHeaderProps) {
       </a>
       <h1 className="gw-title">{title}</h1>
       <div className="gw-actions">
+        {about && <AboutButton about={about} story={story} />}
         {sourceUrl && (
           <a
             className="gw-pill gw-source"

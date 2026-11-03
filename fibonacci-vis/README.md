@@ -75,6 +75,9 @@ remembers its own N.
 
 ## The Growther.si header and footer
 
+The **How it was made** button opens the story of this demo's build: Growther.si
+C5 produced it from a one-sentence prompt in under five hours, for $33.38.
+
 The sticky header and footer come from [`../shared/chrome`](../shared/chrome),
 which every demo in this repository shares, and are mounted with one call in
 `src/main.js`. The **Download C5** button uses the same download kit as
