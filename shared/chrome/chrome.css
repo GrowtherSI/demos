@@ -61,6 +61,14 @@
 .gw-chrome *::after {
   box-sizing: border-box;
 }
+/* A demo's own global button rules (min sizes for touch targets, margins)
+   must not resize the chrome's buttons, which size themselves. */
+.gw-chrome button {
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+}
 .gw-chrome :focus-visible {
   outline: 2px solid var(--brand);
   outline-offset: 2px;
@@ -126,7 +134,7 @@
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .gw-pill {
@@ -171,6 +179,31 @@
   background: none;
   cursor: pointer;
   font-family: "Space Grotesk", sans-serif;
+}
+
+/* Header buttons share one height and one gap, and turn square whenever
+   their label is hidden, so a row of icon buttons reads as a set. */
+.gw-actions {
+  --gw-btn: 36px;
+}
+.gw-actions .gw-pill,
+.gw-actions .gw-cta {
+  height: var(--gw-btn);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  line-height: 1;
+}
+.gw-actions .gw-pill {
+  padding: 0 12px;
+  font-size: 12.5px;
+}
+.gw-actions .gw-cta {
+  padding: 0 16px;
+}
+.gw-actions svg {
+  flex: none;
 }
 
 /* ── "How it was made" modal ─────────────────────────────────────────────── */
@@ -462,11 +495,19 @@
   .gw-about-label {
     display: none;
   }
+  .gw-actions .gw-about {
+    width: var(--gw-btn);
+    padding: 0;
+  }
 }
 
 @media (max-width: 860px) {
   .gw-source-label {
     display: none;
+  }
+  .gw-actions .gw-source {
+    width: var(--gw-btn);
+    padding: 0;
   }
 }
 
@@ -496,20 +537,17 @@
   .gw-title {
     font-size: 15px;
   }
-  /* Icon-only Download on phones, so the other buttons keep their room. */
-  .gw-header .gw-cta {
-    display: grid;
-    place-items: center;
-    padding: 7px 10px;
+  /* Icon-only Download on phones, square like its neighbours, so the other
+     buttons keep their room. */
+  .gw-actions .gw-cta {
+    width: var(--gw-btn);
+    padding: 0;
   }
   .gw-cta-long {
     display: none;
   }
   .gw-cta-short {
-    display: inline-grid;
-  }
-  .gw-pill {
-    padding: 7px 8px;
+    display: inline-flex;
   }
 
   /* A full footer would eat a third of a phone's screen above a full-bleed
@@ -518,7 +556,7 @@
     gap: 6px 14px;
     padding: 6px 12px;
   }
-  .gw-footer-toggle {
+  .gw-footer .gw-footer-toggle {
     display: inline-flex;
     align-items: center;
     gap: 4px;

@@ -47,7 +47,7 @@ const usd = (n: number) =>
   });
 
 /** Lucide "info" (ISC License, https://lucide.dev). */
-export function InfoIcon({ size = 15 }: { size?: number }) {
+export function InfoIcon({ size = 18 }: { size?: number }) {
   return (
     <svg
       width={size}
