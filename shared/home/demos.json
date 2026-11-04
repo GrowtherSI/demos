@@ -1,0 +1,8 @@
+[
+  {
+    "slug": "fibonacci-vis",
+    "title": "Fibonacci Visualizer",
+    "description": "The golden spiral, sunflower phyllotaxis and the Fibonacci sphere, live in interactive 3D with three.js.",
+    "preview": "previews/fibonacci-vis.webp"
+  }
+]

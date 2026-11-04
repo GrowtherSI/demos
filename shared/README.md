@@ -1,11 +1,15 @@
 # shared/
 
-Code every demo uses. Nothing here is a package: demos import it by relative
-path (`../shared/...`), and `chrome/vite.mjs` sets Vite up for that.
+Code every demo uses, and the demos.growther.si listing. None of it is a
+demo, which is why it lives here rather than beside them at the top level.
+
+`chrome/`, `downloadKit/` and `worker/` are not packages: demos import them by
+relative path (`../shared/...`), and `chrome/vite.mjs` sets Vite up for that.
 
 ## chrome/
 
-The sticky Growther.si header (brand left, demo title centred; right, a
+The sticky Growther.si header (brand left with an **All demos** button back to
+demos.growther.si, demo title centred; right, a
 "How it was made" info button, Source and **Download C5**) and footer (the growther.si footer: links, socials,
 tagline, legal line; collapsible on phones). Framework-agnostic from the demo's
 side — one call mounts it:
@@ -30,6 +34,23 @@ copy so readers can see the assumption.
 Its colours are scoped to `.gw-chrome`, so they never touch the demo's own
 styles. The demo positions itself with `--gw-header-h` and `--gw-footer-h`,
 which the chrome keeps current on `<html>`.
+
+The listing passes `listing: true`, which leaves out the All demos button.
+
+## home/
+
+demos.growther.si: a static page that lists every demo, wearing the same
+chrome. `home/demos.json` is the listing: slug, title, a description of up to
+110 characters, and a 720×720 preview (shown at 240px) in `home/previews/`.
+`vite.config.js` renders it into `index.html` at build time, so the cards are
+plain HTML. Its tests check
+`demos.json` against the repository — every top-level directory with a
+`wrangler.jsonc` must be listed, with a preview, linking to the subdomain its
+Worker deploys to.
+
+```bash
+cd shared/home && npm install && npm run dev
+```
 
 ## downloadKit/
 

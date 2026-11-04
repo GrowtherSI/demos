@@ -35,7 +35,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        demo: [fibonacci-vis]
+        # Every demo, plus shared/home: the demos.growther.si listing.
+        demo: [fibonacci-vis, shared/home]
     defaults:
       run:
         working-directory: ${{ matrix.demo }}

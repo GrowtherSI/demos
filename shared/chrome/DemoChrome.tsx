@@ -1,8 +1,10 @@
 /**
  * The header and footer every Growther.si demo shares.
  *
- * Header: linked brand left, the demo's title centred; right, "How it was made"
- * (AboutModal.tsx), Source and Download.
+ * Header: linked brand left, then "All demos" back to demos.growther.si (left
+ * out on that listing itself); the demo's title centred; right, "How it was
+ * made" (AboutModal.tsx), Source and Download. Read left to right, the brand,
+ * All demos and the title are the breadcrumb: Growther.si › Demos › this demo.
  * Footer: the growther.si footer (growther-marketing/src/components/chrome.tsx)
  * — same links, socials, mark, rotating tagline and legal line — made sticky.
  *
@@ -23,6 +25,7 @@ import logoUrl from "./assets/logo.png";
 
 export const SITE_URL = "https://growther.si";
 export const DOCS_URL = "https://docs.growther.si";
+export const DEMOS_URL = "https://demos.growther.si";
 const modalUrl = (section: string) => `${SITE_URL}/#modal=${section}`;
 
 /**
@@ -55,6 +58,8 @@ export interface DemoHeaderProps {
   sourceUrl?: string;
   /** How C5 built this demo; omit to hide the info button. */
   about?: DemoAbout;
+  /** True only on the demos.growther.si listing, which needs no way back to itself. */
+  listing?: boolean;
 }
 
 function GitHubIcon() {
@@ -64,6 +69,36 @@ function GitHubIcon() {
         fill="currentColor"
         d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
       />
+    </svg>
+  );
+}
+
+/** Lucide "boxes" (ISC License, https://lucide.dev). */
+function BoxesIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+      <path d="m7 16.5-4.74-2.85" />
+      <path d="m7 16.5 5-3" />
+      <path d="M7 16.5v5.17" />
+      <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+      <path d="m17 16.5-5-3" />
+      <path d="m17 16.5 4.74-2.85" />
+      <path d="M17 16.5v5.17" />
+      <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+      <path d="M12 8 7.26 5.15" />
+      <path d="m12 8 4.74-2.85" />
+      <path d="M12 13.5V8" />
     </svg>
   );
 }
@@ -94,16 +129,30 @@ export function DemoHeader({
   story,
   sourceUrl,
   about,
+  listing = false,
 }: DemoHeaderProps) {
   const ref = useHeightVar<HTMLElement>("--gw-header-h");
   return (
     <header ref={ref} className="gw-header">
-      <a className="gw-brand" href={SITE_URL} aria-label="Growther.si home">
-        <img src={logoUrl} alt="" width={26} height={26} />
-        <span className="gw-wordmark" aria-hidden="true">
-          Growther<span className="gw-wordmark-accent">.si</span>
-        </span>
-      </a>
+      <div className="gw-start">
+        <a className="gw-brand" href={SITE_URL} aria-label="Growther.si home">
+          <img src={logoUrl} alt="" width={26} height={26} />
+          <span className="gw-wordmark" aria-hidden="true">
+            Growther<span className="gw-wordmark-accent">.si</span>
+          </span>
+        </a>
+        {!listing && (
+          <a
+            className="gw-pill gw-demos"
+            href={DEMOS_URL}
+            aria-label="All demos"
+            title="All demos"
+          >
+            <BoxesIcon />
+            <span className="gw-demos-label">All demos</span>
+          </a>
+        )}
+      </div>
       <h1 className="gw-title">{title}</h1>
       <div className="gw-actions">
         {about && <AboutButton about={about} story={story} />}

@@ -1,8 +1,9 @@
 # Growther.si Demos
 
 Open-source demos built with [Growther.si C5](https://growther.si). Each
-directory is a self-contained web app, deployed to its own subdomain of
-`demos.growther.si`.
+top-level directory is a self-contained web app, deployed to its own subdomain
+of `demos.growther.si` — browse them all at
+[demos.growther.si](https://demos.growther.si).
 
 | Demo | Live | What it is |
 | --- | --- | --- |
@@ -15,7 +16,12 @@ directory is a self-contained web app, deployed to its own subdomain of
 shared/chrome/       the sticky Growther.si header and footer every demo mounts
 shared/downloadKit/  the Download button's logic and modal — mirrored verbatim from growther.si
 shared/worker/       the Worker every demo deploys with (static assets + /v1/version)
+shared/home/         demos.growther.si itself: the listing of every demo
 ```
+
+Only the top-level directories are demos; nothing in `shared/` is one, so you
+can copy a demo's directory (plus `shared/chrome`, `shared/downloadKit` and
+`shared/worker` if you keep the Growther.si chrome) without the rest.
 
 To run a demo, `cd` into it and follow its README — typically
 `npm install && npm run dev`.
@@ -33,6 +39,9 @@ To run a demo, `cd` into it and follow its README — typically
    change the Worker `name` and the route to `<name>.demos.growther.si`.
 4. Add the directory to the matrix in `.github/workflows/demos.yml` and to the
    table above.
+5. List it on demos.growther.si: add an entry to `shared/home/demos.json` and
+   its square preview image (720×720 WebP) to `shared/home/previews/`. The
+   listing's tests fail until every demo is there.
 
 ## Contributing and security
 

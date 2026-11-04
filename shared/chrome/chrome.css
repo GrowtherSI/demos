@@ -95,8 +95,15 @@
   border-bottom: 1px solid var(--line);
 }
 
-.gw-brand {
+.gw-start {
   justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.gw-brand {
   display: flex;
   align-items: center;
   gap: 9px;
@@ -182,10 +189,12 @@
 }
 
 /* Header buttons share one height and one gap, and turn square whenever
-   their label is hidden, so a row of icon buttons reads as a set. */
-.gw-actions {
+   their label is hidden, so a row of icon buttons reads as a set. The
+   "All demos" button by the brand is sized the same way. */
+.gw-header {
   --gw-btn: 36px;
 }
+.gw-start .gw-pill,
 .gw-actions .gw-pill,
 .gw-actions .gw-cta {
   height: var(--gw-btn);
@@ -195,6 +204,7 @@
   gap: 7px;
   line-height: 1;
 }
+.gw-start .gw-pill,
 .gw-actions .gw-pill {
   padding: 0 12px;
   font-size: 12.5px;
@@ -202,7 +212,10 @@
 .gw-actions .gw-cta {
   padding: 0 16px;
 }
-.gw-actions svg {
+.gw-header svg {
+  flex: none;
+}
+.gw-demos {
   flex: none;
 }
 
@@ -509,6 +522,13 @@
     width: var(--gw-btn);
     padding: 0;
   }
+  .gw-demos-label {
+    display: none;
+  }
+  .gw-start .gw-demos {
+    width: var(--gw-btn);
+    padding: 0;
+  }
 }
 
 @media (max-width: 560px) {
@@ -530,6 +550,9 @@
     grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 10px;
     padding: 0 12px;
+  }
+  .gw-start {
+    gap: 10px;
   }
   .gw-wordmark {
     display: none;

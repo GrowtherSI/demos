@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Open-source demos · Growther.si</title>
+    <meta name="description" content="Open-source web apps built by Growther.si C5, each from a single prompt. Run them live, read the source, copy the project." />
+    <meta name="theme-color" content="#070b12" />
+    <link rel="canonical" href="https://demos.growther.si/" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Growther.si demos" />
+    <meta property="og:title" content="Open-source demos" />
+    <meta property="og:description" content="Open-source web apps built by Growther.si C5, each from a single prompt." />
+    <meta property="og:url" content="https://demos.growther.si/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@GrowtherAI" />
+  </head>
+  <body>
+    <a class="skip-link" href="#demos">Skip to demos</a>
+    <div id="gw-header"></div>
+
+    <main class="home gw-chrome">
+      <section class="intro" aria-labelledby="intro-title">
+        <p class="gw-kicker">Open source · MIT</p>
+        <h2 id="intro-title" class="intro-title">Built by C5 from a single prompt</h2>
+        <p class="intro-lede">
+          Each demo is a self-contained web app. Run it here, read how it was made, then copy the
+          project from
+          <a href="https://github.com/GrowtherSI/demos" target="_blank" rel="noopener noreferrer">GitHub</a>.
+        </p>
+      </section>
+
+      <!-- Cards are rendered from demos.json at build time (vite.config.js), so
+           the listing is plain HTML: no script needed to see it. -->
+      <ul id="demos" class="demos" aria-label="Demos">
+        <!--demos-->
+      </ul>
+    </main>
+
+    <div id="gw-footer"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
