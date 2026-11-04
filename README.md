@@ -1,6 +1,6 @@
 # Growther.si Demos
 
-Open-source demos built with [Growther.si C5](https://growther.si). Each
+OpenSource demos built with [Growther.si C5](https://growther.si). Each
 top-level directory is a self-contained web app, deployed to its own subdomain
 of `demos.growther.si` — browse them all at
 [demos.growther.si](https://demos.growther.si).
