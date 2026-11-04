@@ -1,0 +1,21 @@
+# Security and caching headers for every static response of demos.growther.si
+# (Cloudflare Workers static assets). /v1/version sets its own in ../worker.
+#
+# CSP: everything is self-hosted — scripts, styles, fonts, images — and the only
+# request the page makes is same-origin /v1/version. The one exception is
+# Cloudflare Web Analytics (cookieless), which the growther.si zone injects into
+# every page: its beacon script and the endpoint it reports to. 'unsafe-inline' is for
+# style ATTRIBUTES only (the shared download kit styles inline); no inline
+# script runs. frame-ancestors lets Growther.si's own sites embed the page and
+# nobody else.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self' https://growther.si https://*.growther.si; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# Vite fingerprints everything under /assets, so it can be cached forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,0 +1,196 @@
+/*
+ * demos.growther.si — the listing of every demo.
+ *
+ * The page is Growther.si's own, so <main> wears the chrome's tokens
+ * (.gw-chrome: --bg, --ink, --brand, the fonts) rather than restating them.
+ * It scrolls between the fixed header and footer using the --gw-header-h and
+ * --gw-footer-h properties the chrome keeps current, like every demo does.
+ * Breakpoints match the chrome's: 1100, 860, 640px.
+ */
+
+html {
+  background: #070b12;
+  scroll-padding-top: var(--gw-header-h);
+}
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background:
+    radial-gradient(1100px 520px at 50% -160px, rgba(46, 203, 143, 0.13), transparent 70%),
+    #070b12;
+  -webkit-font-smoothing: antialiased;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 70;
+  padding: 0.5rem 1rem;
+  background: #2ecb8f;
+  color: #04140c;
+  font: 600 14px system-ui, sans-serif;
+}
+.skip-link:focus {
+  left: 0.5rem;
+}
+
+.home {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: calc(var(--gw-header-h) + 56px) 28px calc(var(--gw-footer-h) + 56px);
+  font-size: 15px;
+}
+
+/* ── Intro ───────────────────────────────────────────────────────────────── */
+
+.intro {
+  max-width: 640px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+.intro .gw-kicker {
+  justify-content: center;
+  margin: 0 0 12px;
+}
+.intro-title {
+  margin: 0 0 12px;
+  font: 400 clamp(26px, 4vw, 36px) / 1.15 "Convergence", "Space Grotesk", sans-serif;
+  letter-spacing: 0.01em;
+}
+.intro-lede {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.intro-lede a {
+  color: var(--brand);
+  text-underline-offset: 3px;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+
+.demos {
+  display: grid;
+  /* Fixed 240px cards (240px square previews), as many per row as fit and
+     centred, so a lone card stays card-sized rather than stretching. */
+  grid-template-columns: repeat(auto-fit, 240px);
+  justify-content: center;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.demo:hover,
+.demo:focus-within {
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--line));
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+}
+
+.demo-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.demo-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px 14px;
+}
+.demo-title {
+  margin: 0;
+  font: 400 18px/1.25 "Convergence", "Space Grotesk", sans-serif;
+}
+/* The title's link covers the whole card, so the card is one big target;
+   the Source link sits above it. */
+.demo-link {
+  color: var(--ink);
+  text-decoration: none;
+}
+.demo-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.demo-link:focus-visible {
+  outline: none;
+}
+.demo:has(.demo-link:focus-visible) {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+.demo-desc {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.demo-meta {
+  display: flex;
+  justify-content: flex-end;
+  margin: 4px 0 0;
+}
+.demo-source {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: 500 12px "Space Grotesk", sans-serif;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.demo-source:hover {
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--line));
+}
+
+/* ── Narrow screens ──────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .home {
+    padding: calc(var(--gw-header-h) + 32px) 16px calc(var(--gw-footer-h) + 32px);
+  }
+  .intro {
+    margin-bottom: 28px;
+  }
+  .intro-lede {
+    font-size: 15px;
+  }
+  .demos {
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo {
+    transition: none;
+  }
+  .demo:hover,
+  .demo:focus-within {
+    transform: none;
+  }
+}

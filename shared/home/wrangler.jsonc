@@ -1,0 +1,19 @@
+// Deploys the listing to https://demos.growther.si as a Worker with static
+// assets. Same shared Worker script as every demo (../worker), which runs only
+// for /v1/* — the Download button's release lookup; everything else is served
+// straight from dist/.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "demos-home",
+  "main": "../worker/index.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/v1/*"]
+  },
+  "routes": [{ "pattern": "demos.growther.si", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": true }
+}
