@@ -1,0 +1,19 @@
+// Deploys this demo to https://fibonacci-vis.demos.growther.si as a Worker with
+// static assets. The Worker script is shared by every demo (../shared/worker)
+// and runs only for /v1/*; everything else is served straight from dist/.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "demo-fibonacci-vis",
+  "main": "../shared/worker/index.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/v1/*"],
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [{ "pattern": "fibonacci-vis.demos.growther.si", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": true }
+}
