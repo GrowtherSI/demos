@@ -186,3 +186,98 @@ describe("QA regression tests (Step 3 patches)", () => {
     expect(() => spiralLayout(79)).toThrow(RangeError);
   });
 });
+
+describe("Input contracts and edge cases", () => {
+  test("fibonacci accepts a BigInt index", () => {
+    expect(fibonacci(10n)).toBe(55n);
+    expect(fibonacci(0n)).toBe(0n);
+  });
+
+  test.each([-1n, -1, 1.5, NaN, "3", null])("fibonacci rejects %s", (n) => {
+    expect(() => fibonacci(n)).toThrow(/n must be a non-negative integer/);
+  });
+
+  test("fibonacciSequence(0) is empty and rejects a bad count", () => {
+    expect(fibonacciSequence(0)).toEqual([]);
+    expect(() => fibonacciSequence(-2)).toThrow(
+      /count must be a non-negative integer, got -2/,
+    );
+  });
+
+  test("ratios(k)[k-1] = F(k+1)/F(k), and ratios(0) is refused", () => {
+    expect(ratios(4)).toEqual([1, 2, 1.5, 5 / 3]);
+    expect(() => ratios(0)).toThrow("count must be at least 1");
+  });
+
+  test("convergenceError(0) is refused", () => {
+    expect(() => convergenceError(0)).toThrow("k must be at least 1");
+  });
+
+  test("validateInteger: defaults, whitespace, decimals and non-numbers", () => {
+    expect(validateInteger(" 7 ")).toEqual({ ok: true, value: 7 });
+    expect(validateInteger(-5)).toEqual({ ok: true, value: -5 });
+    expect(validateInteger("2.5", { name: "N" })).toEqual({
+      ok: false,
+      value: "2.5",
+      error: "N must be an integer",
+    });
+    expect(validateInteger(Infinity).error).toBe(
+      "Value cannot be NaN or Infinity",
+    );
+    expect(validateInteger(null).error).toBe("Value cannot be NaN or Infinity");
+    expect(validateInteger(1, { min: 2 }).error).toBe(
+      `Value must be between 2 and ${Number.MAX_SAFE_INTEGER}`,
+    );
+  });
+
+  test("formatBigInt truncates negatives too, and defaults to 20 digits", () => {
+    expect(formatBigInt(-123456789n, 3)).toBe("-123…(9 digits)");
+    expect(formatBigInt(-42n, 3)).toBe("-42");
+    expect(formatBigInt(fibonacci(100))).toBe(
+      "35422484817926191507…(21 digits)",
+    );
+    expect(formatBigInt(12345)).toBe("12345");
+  });
+
+  test("phyllotaxisPoint defaults to c = 1 and the golden angle", () => {
+    expect(phyllotaxisPoint(4)).toEqual(
+      phyllotaxisPoint(4, 1, GOLDEN_ANGLE_RAD),
+    );
+    expect(phyllotaxisPoint(0)).toEqual({ x: 0, y: 0, r: 0, theta: 0 });
+  });
+
+  test.each([
+    [0, 0],
+    [-1, 10],
+    [10, 10],
+    [1.5, 10],
+    [0, 1.5],
+  ])("fibonacciSpherePoint(%s, %s) is refused", (i, count) => {
+    expect(() => fibonacciSpherePoint(i, count)).toThrow(RangeError);
+  });
+
+  test("fibonacciSpherePoint with one point sits on the equator", () => {
+    expect(fibonacciSpherePoint(0, 1)).toEqual({ x: 1, y: 0, z: 0 });
+  });
+
+  test("spiralLayout(0) is empty; it rejects a non-integer", () => {
+    expect(spiralLayout(0)).toEqual([]);
+    expect(() => spiralLayout(2.5)).toThrow(
+      /nTerms must be a non-negative integer/,
+    );
+  });
+
+  test("spiralLayout places squares right, up, left, down around the previous ones", () => {
+    const [s1, s2, s3, s4, s5, s6] = spiralLayout(6);
+    expect(
+      [s1, s2, s3, s4, s5, s6].map(({ x, y, size }) => [x, y, size]),
+    ).toEqual([
+      [0, 0, 1],
+      [1, 0, 1], // right
+      [0, 1, 2], // up
+      [-3, 0, 3], // left
+      [-3, -5, 5], // down
+      [2, -5, 8], // right again
+    ]);
+  });
+});

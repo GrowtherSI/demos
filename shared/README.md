@@ -51,7 +51,7 @@ The listing passes `listing: true`, which leaves out the All demos button.
 demos.growther.si: a static page that lists every demo, wearing the same
 chrome. `home/demos.json` is the listing: slug, title, a description of up to
 110 characters, and a 720×720 preview (shown at 240px) in `home/previews/`.
-`vite.config.js` renders it into `index.html` at build time, so the cards are
+`demoCards.js` (a plugin in `vite.config.js`) renders it into `index.html` at build time, so the cards are
 plain HTML. Its tests check
 `demos.json` against the repository — every top-level directory with a
 `wrangler.jsonc` must be listed, with a preview, linking to the subdomain its

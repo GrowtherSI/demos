@@ -40,7 +40,8 @@ function writeColors() {
     paletteColor(params.palette, n > 1 ? i / (n - 1) : 0, color);
     mesh.setColorAt(i, color);
   }
-  if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+  // n >= 1, so setColorAt() above has always created instanceColor.
+  mesh.instanceColor.needsUpdate = true;
 }
 
 export function create(targetScene, initialParams) {

@@ -143,9 +143,9 @@ function AboutModal({
       const focusable = dialog.current.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       );
+      // Never empty: the Close button is always in the dialog.
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
-      if (!first || !last) return;
       if (e.shiftKey && document.activeElement === first) {
         e.preventDefault();
         last.focus();

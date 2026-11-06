@@ -19,6 +19,17 @@ export default mergeConfig(
     },
     test: {
       environment: "node",
+      coverage: {
+        provider: "v8",
+        include: ["src/**/*.js"],
+        // 100%, and it stays there: never lower it to make a red build green.
+        thresholds: {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 100,
+        },
+      },
     },
   }),
 );

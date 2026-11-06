@@ -19,18 +19,32 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  shared:
+  # The repository-wide gate, the same one the husky hooks run locally: eslint,
+  # tsc, prettier, the download kit's manifest, the test-quality guard, and the
+  # shared/ suite (chrome + Worker) with its 100% coverage floor.
+  repo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Download kit matches its manifest
-        working-directory: shared/downloadKit
-        run: shasum -a 256 -c MANIFEST.sha256
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - name: Lint (eslint + tsc + download-kit manifest)
+        run: npm run lint
+      - name: Formatting
+        run: npm run format:check
+      - name: Test quality (no hollow or @ts-nocheck tests)
+        run: npm run check:test-quality
+      - name: shared/ tests (100% coverage floor)
+        run: npm run test:shared
 
   demo:
-    needs: shared
+    needs: repo
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -51,6 +65,7 @@ jobs:
           cache-dependency-path: ${{ matrix.demo }}/package-lock.json
       - run: npm ci
       - run: npm audit --omit=dev --audit-level=high
+      # Runs with coverage, so the app's 100% floor is enforced here too.
       - run: npm test
       - run: npm run build
       - name: Deploy

@@ -78,9 +78,11 @@ function start() {
   controls.enableZoom = true; // two-finger pinch zoom
   controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
 
+  // Runs only once a module is active (onActivate, flush), so controller and
+  // controller.active are always set here. fitRadius is optional on a module.
   function fitCamera() {
-    const active = controller && controller.active;
-    const r = active && active.fitRadius ? active.fitRadius() : 10;
+    const { active } = controller;
+    const r = active.fitRadius ? active.fitRadius() : 10;
     const dist = r / Math.sin(THREE.MathUtils.degToRad(camera.fov / 2));
     camera.position.set(0, 0, Math.max(dist, 5));
     camera.near = Math.max(0.01, dist / 100);
@@ -99,16 +101,17 @@ function start() {
     onActivate: fitCamera,
   });
 
+  // Scheduled only by queueChange, which sets `pending` first, and never twice
+  // at once (rafScheduled), so there is always a change to apply here.
   function flush() {
     rafScheduled = false;
-    if (!pending) return;
     const change = pending;
     const modeChanged = pendingMode;
     pending = null;
     pendingMode = false;
     params = { ...params, ...change };
     const active = controller.active;
-    const prevFit = active && active.fitRadius ? active.fitRadius() : null;
+    const prevFit = active.fitRadius ? active.fitRadius() : null;
     const result = controller.apply(change, { modeChanged });
     if (
       result === "updated" &&

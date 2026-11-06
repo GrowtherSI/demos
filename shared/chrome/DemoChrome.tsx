@@ -36,8 +36,9 @@ const modalUrl = (section: string) => `${SITE_URL}/#modal=${section}`;
 function useHeightVar<T extends HTMLElement>(prop: string) {
   const ref = useRef<T>(null);
   useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    // Both callers attach the ref unconditionally, and React attaches refs
+    // before it runs layout effects, so it is always set here.
+    const el = ref.current!;
     const root = document.documentElement;
     const set = () =>
       root.style.setProperty(prop, `${el.getBoundingClientRect().height}px`);

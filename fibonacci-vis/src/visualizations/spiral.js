@@ -99,12 +99,11 @@ function clear() {
     edges.material.dispose();
   });
   squares = [];
-  if (arc) {
-    group.remove(arc);
-    arc.geometry.dispose();
-    arc.material.dispose();
-    arc = null;
-  }
+  // build() always makes the arc along with the squares, so it is set here.
+  group.remove(arc);
+  arc.geometry.dispose();
+  arc.material.dispose();
+  arc = null;
 }
 
 function showTerms(count) {
@@ -113,7 +112,7 @@ function showTerms(count) {
     mesh.visible = visible;
     edges.visible = visible;
   });
-  if (arc) arc.geometry.setDrawRange(0, count * arcPointsPerTerm + 1);
+  arc.geometry.setDrawRange(0, count * arcPointsPerTerm + 1);
 }
 
 export function create(targetScene, initialParams) {

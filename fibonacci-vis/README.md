@@ -24,15 +24,15 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
-| Script            | What it does                                                   |
-| ----------------- | -------------------------------------------------------------- |
-| `npm run dev`     | Vite dev server with hot reload                                |
-| `npm test`        | Vitest: the math module and the UI / mode-switching suite      |
-| `npm run perf`    | Timing budget for the math behind one N update (< 200 ms)      |
-| `npm run build`   | Production build into `dist/`                                  |
-| `npm run preview` | Serve `dist/` locally                                          |
-| `npm run cf:dev`  | Build, then run the production Worker locally (`wrangler dev`) |
-| `npm run deploy`  | Build and deploy to Cloudflare (maintainers)                   |
+| Script            | What it does                                                    |
+| ----------------- | --------------------------------------------------------------- |
+| `npm run dev`     | Vite dev server with hot reload                                 |
+| `npm test`        | Vitest with a 100% coverage floor: math, UI, modes, entry point |
+| `npm run perf`    | Timing budget for the math behind one N update (< 200 ms)       |
+| `npm run build`   | Production build into `dist/`                                   |
+| `npm run preview` | Serve `dist/` locally                                           |
+| `npm run cf:dev`  | Build, then run the production Worker locally (`wrangler dev`)  |
+| `npm run deploy`  | Build and deploy to Cloudflare (maintainers)                    |
 
 ## How it is put together
 
