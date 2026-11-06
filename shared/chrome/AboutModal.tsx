@@ -262,7 +262,10 @@ function AboutModal({
         <div className="gw-compare" aria-hidden="true">
           <div className="gw-bar-row">
             <span>C5</span>
-            <span className="gw-bar gw-bar-c5" style={{ width: `${c5Share}%` }} />
+            <span
+              className="gw-bar gw-bar-c5"
+              style={{ width: `${c5Share}%` }}
+            />
             <b>{usd(about.costUsd)}</b>
           </div>
           <div className="gw-bar-row">

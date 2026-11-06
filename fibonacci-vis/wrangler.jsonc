@@ -10,10 +10,12 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "run_worker_first": ["/v1/*"],
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "single-page-application",
   },
-  "routes": [{ "pattern": "fibonacci-vis.demos.growther.si", "custom_domain": true }],
+  "routes": [
+    { "pattern": "fibonacci-vis.demos.growther.si", "custom_domain": true },
+  ],
   "workers_dev": false,
   "preview_urls": false,
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
 }

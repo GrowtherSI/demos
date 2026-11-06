@@ -38,7 +38,9 @@
  */
 export function createModeController({ scene, modules, params, onActivate }) {
   if (!scene || !modules || !params) {
-    throw new TypeError('createModeController: scene, modules and params are required');
+    throw new TypeError(
+      "createModeController: scene, modules and params are required",
+    );
   }
   let current = { ...params };
   let active = null;
@@ -59,15 +61,15 @@ export function createModeController({ scene, modules, params, onActivate }) {
     current = { ...current, ...change };
     if (!active || (modeChanged && current.mode !== activeMode)) {
       activate(current.mode);
-      return 'activated';
+      return "activated";
     }
-    if (typeof active.setParams === 'function') {
+    if (typeof active.setParams === "function") {
       active.setParams(change); // in-place update; nothing is recreated
-      return 'updated';
+      return "updated";
     }
     active.dispose();
     active.create(scene, current);
-    return 'recreated';
+    return "recreated";
   }
 
   function dispose() {

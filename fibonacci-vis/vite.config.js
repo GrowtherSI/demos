@@ -1,5 +1,5 @@
-import { defineConfig, mergeConfig } from 'vite';
-import { demoViteConfig } from '../shared/chrome/vite.mjs';
+import { defineConfig, mergeConfig } from "vite";
+import { demoViteConfig } from "../shared/chrome/vite.mjs";
 
 export default mergeConfig(
   demoViteConfig(),
@@ -10,15 +10,15 @@ export default mergeConfig(
       rollupOptions: {
         output: {
           manualChunks(id) {
-            if (id.includes('node_modules/three')) return 'three';
-            if (id.includes('node_modules/react')) return 'react';
+            if (id.includes("node_modules/three")) return "three";
+            if (id.includes("node_modules/react")) return "react";
             return undefined;
           },
         },
       },
     },
     test: {
-      environment: 'node',
+      environment: "node",
     },
   }),
 );

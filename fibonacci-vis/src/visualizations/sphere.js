@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import { fibonacciSpherePoint, LIMITS } from '../fibonacci.js';
-import { paletteColor } from './palette.js';
+import * as THREE from "three";
+import { fibonacciSpherePoint, LIMITS } from "../fibonacci.js";
+import { paletteColor } from "./palette.js";
 
 const RADIUS = 6;
 const GROW_SECONDS = 4;
@@ -44,7 +44,10 @@ export function create(targetScene, initialParams) {
   scene = targetScene;
   params = { ...initialParams };
   const geometry = new THREE.IcosahedronGeometry(1, 1);
-  const material = new THREE.MeshStandardMaterial({ roughness: 0.45, metalness: 0.1 });
+  const material = new THREE.MeshStandardMaterial({
+    roughness: 0.45,
+    metalness: 0.1,
+  });
   mesh = new THREE.InstancedMesh(geometry, material, LIMITS.MAX_POINTS);
   mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   mesh.frustumCulled = false;

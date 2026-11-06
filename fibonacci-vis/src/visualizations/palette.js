@@ -1,11 +1,11 @@
-import { Color } from 'three';
+import { Color } from "three";
 
 /** Colour stops for each palette, interpolated along the point index. */
 export const PALETTES = Object.freeze({
-  sunflower: ['#3b1f0b', '#d98e04', '#ffe066'],
-  ocean: ['#03045e', '#0077b6', '#90e0ef'],
-  aurora: ['#2d00f7', '#f20089', '#00f5d4'],
-  mono: ['#555b6e', '#b8bfd0', '#ffffff'],
+  sunflower: ["#3b1f0b", "#d98e04", "#ffe066"],
+  ocean: ["#03045e", "#0077b6", "#90e0ef"],
+  aurora: ["#2d00f7", "#f20089", "#00f5d4"],
+  mono: ["#555b6e", "#b8bfd0", "#ffffff"],
 });
 
 const tmp = new Color();

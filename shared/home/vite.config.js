@@ -1,10 +1,10 @@
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { defineConfig, mergeConfig } from 'vite';
-import { demoViteConfig } from '../chrome/vite.mjs';
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { defineConfig, mergeConfig } from "vite";
+import { demoViteConfig } from "../chrome/vite.mjs";
 
-const MANIFEST = fileURLToPath(new URL('./demos.json', import.meta.url));
-const REPO = 'https://github.com/GrowtherSI/demos/tree/main';
+const MANIFEST = fileURLToPath(new URL("./demos.json", import.meta.url));
+const REPO = "https://github.com/GrowtherSI/demos/tree/main";
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
@@ -17,7 +17,7 @@ export function renderCards(demos) {
       const url = `https://${d.slug}.demos.growther.si/`;
       return `<li class="demo">
           <img class="demo-preview" src="/${esc(d.preview)}" alt="" width="720" height="720"${
-            i > 3 ? ' loading="lazy"' : ''
+            i > 3 ? ' loading="lazy"' : ""
           } decoding="async" />
           <div class="demo-body">
             <h2 class="demo-title"><a class="demo-link" href="${url}">${esc(d.title)}</a></h2>
@@ -29,25 +29,25 @@ export function renderCards(demos) {
           </div>
         </li>`;
     })
-    .join('\n        ');
+    .join("\n        ");
 }
 
 /** Fills <!--demos--> in index.html from demos.json, and reloads the dev page when it changes. */
 function demoCards() {
   return {
-    name: 'demo-cards',
+    name: "demo-cards",
     configureServer(server) {
       server.watcher.add(MANIFEST);
-      server.watcher.on('change', (file) => {
-        if (file === MANIFEST) server.ws.send({ type: 'full-reload' });
+      server.watcher.on("change", (file) => {
+        if (file === MANIFEST) server.ws.send({ type: "full-reload" });
       });
     },
     transformIndexHtml: {
       // 'pre', so Vite's own HTML pass then picks up the cards' image srcs.
-      order: 'pre',
+      order: "pre",
       handler(html) {
-        const demos = JSON.parse(readFileSync(MANIFEST, 'utf8'));
-        return html.replace('<!--demos-->', renderCards(demos));
+        const demos = JSON.parse(readFileSync(MANIFEST, "utf8"));
+        return html.replace("<!--demos-->", renderCards(demos));
       },
     },
   };
@@ -61,14 +61,14 @@ export default mergeConfig(
       rollupOptions: {
         output: {
           manualChunks(id) {
-            if (id.includes('node_modules/react')) return 'react';
+            if (id.includes("node_modules/react")) return "react";
             return undefined;
           },
         },
       },
     },
     test: {
-      environment: 'node',
+      environment: "node",
     },
   }),
 );

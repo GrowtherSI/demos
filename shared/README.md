@@ -15,14 +15,23 @@ tagline, legal line; collapsible on phones). Framework-agnostic from the demo's
 side — one call mounts it:
 
 ```js
-import { mountDemoChrome } from '../../shared/chrome';
+import { mountDemoChrome } from "../../shared/chrome";
 
 mountDemoChrome({
-  title: 'Fibonacci Visualizer',
-  story: 'demo-fibonacci-vis', // source label for the download kit
-  sourceUrl: 'https://github.com/GrowtherSI/demos/tree/main/fibonacci-vis',
-  about: { prompt, hours, costUsd, passedSteps, reworkSteps, tokens,
-           inference, humanHours, humanRateUsd }, // optional; see AboutModal.tsx
+  title: "Fibonacci Visualizer",
+  story: "demo-fibonacci-vis", // source label for the download kit
+  sourceUrl: "https://github.com/GrowtherSI/demos/tree/main/fibonacci-vis",
+  about: {
+    prompt,
+    hours,
+    costUsd,
+    passedSteps,
+    reworkSteps,
+    tokens,
+    inference,
+    humanHours,
+    humanRateUsd,
+  }, // optional; see AboutModal.tsx
 });
 ```
 

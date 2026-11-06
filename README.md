@@ -5,8 +5,8 @@ top-level directory is a self-contained web app, deployed to its own subdomain
 of `demos.growther.si` — browse them all at
 [demos.growther.si](https://demos.growther.si).
 
-| Demo | Live | What it is |
-| --- | --- | --- |
+| Demo                           | Live                                                                       | What it is                                                                   |
+| ------------------------------ | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [fibonacci-vis](fibonacci-vis) | [fibonacci-vis.demos.growther.si](https://fibonacci-vis.demos.growther.si) | Golden spiral, phyllotaxis and Fibonacci sphere in interactive 3D (three.js) |
 
 ## Layout

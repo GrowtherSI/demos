@@ -32,7 +32,12 @@ body {
   overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
-  font: 15px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font:
+    15px/1.45 system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
 img,
@@ -80,7 +85,7 @@ svg {
 
 button,
 select,
-input[type='number'] {
+input[type="number"] {
   min-height: 44px;
   font: inherit;
   color: var(--text);
@@ -98,17 +103,17 @@ button.secondary {
   background: transparent;
   margin-top: 0.4rem;
 }
-button[aria-pressed='true'] {
+button[aria-pressed="true"] {
   background: #2c3550;
   border-color: var(--accent);
 }
-input[type='range'] {
+input[type="range"] {
   width: 100%;
   min-height: 44px;
   accent-color: var(--accent);
   margin: 0;
 }
-input[aria-invalid='true'] {
+input[aria-invalid="true"] {
   border-color: var(--error);
 }
 
@@ -132,7 +137,9 @@ input[aria-invalid='true'] {
   background: var(--panel);
   transform: translateX(-100%);
   visibility: hidden;
-  transition: transform 0.25s ease, visibility 0.25s;
+  transition:
+    transform 0.25s ease,
+    visibility 0.25s;
 }
 .controls.is-open {
   transform: translateX(0);
@@ -156,7 +163,7 @@ input[aria-invalid='true'] {
   color: var(--muted);
   font-size: 0.9rem;
 }
-.field input[type='number'],
+.field input[type="number"],
 .field select {
   width: 100%;
 }
@@ -267,7 +274,10 @@ input[aria-invalid='true'] {
     bottom: calc(var(--gw-footer-h) + 1rem);
     width: 340px;
     max-height: calc(100vh - var(--gw-header-h) - var(--gw-footer-h) - 2rem);
-    max-height: min(45vh, calc(100dvh - var(--gw-header-h) - var(--gw-footer-h) - 2rem));
+    max-height: min(
+      45vh,
+      calc(100dvh - var(--gw-header-h) - var(--gw-footer-h) - 2rem)
+    );
   }
 }
 

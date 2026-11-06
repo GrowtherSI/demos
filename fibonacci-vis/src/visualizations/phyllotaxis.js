@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import { phyllotaxisPoint, LIMITS } from '../fibonacci.js';
-import { paletteColor } from './palette.js';
+import * as THREE from "three";
+import { phyllotaxisPoint, LIMITS } from "../fibonacci.js";
+import { paletteColor } from "./palette.js";
 
 const RADIUS = 10; // outer radius of the pattern in world units
 const GROW_SECONDS = 4; // time to grow the full pattern
@@ -64,7 +64,12 @@ export function setParams(next) {
   params = { ...params, ...next };
   if (!mesh) return;
   const nChanged = clampN(prev.n) !== clampN(params.n);
-  if (nChanged || prev.angleDeg !== params.angleDeg || prev.pointSize !== params.pointSize) writePositions();
+  if (
+    nChanged ||
+    prev.angleDeg !== params.angleDeg ||
+    prev.pointSize !== params.pointSize
+  )
+    writePositions();
   if (nChanged || prev.palette !== params.palette) writeColors();
   if (!params.playing) mesh.count = clampN(params.n);
 }

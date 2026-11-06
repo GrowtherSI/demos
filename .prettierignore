@@ -1,0 +1,13 @@
+node_modules
+dist
+coverage
+.wrangler
+.git
+.claude
+public
+package-lock.json
+
+# Mirrored byte-for-byte from growther-marketing and pinned by its
+# MANIFEST.sha256 (npm run check:download-kit). Formatting it here would change
+# its bytes and fail that check; its formatting is the canonical copy's job.
+shared/downloadKit

@@ -16,7 +16,11 @@ body {
   margin: 0;
   min-height: 100dvh;
   background:
-    radial-gradient(1100px 520px at 50% -160px, rgba(46, 203, 143, 0.13), transparent 70%),
+    radial-gradient(
+      1100px 520px at 50% -160px,
+      rgba(46, 203, 143, 0.13),
+      transparent 70%
+    ),
     #070b12;
   -webkit-font-smoothing: antialiased;
 }
@@ -29,7 +33,9 @@ body {
   padding: 0.5rem 1rem;
   background: #2ecb8f;
   color: #04140c;
-  font: 600 14px system-ui, sans-serif;
+  font:
+    600 14px system-ui,
+    sans-serif;
 }
 .skip-link:focus {
   left: 0.5rem;
@@ -55,7 +61,10 @@ body {
 }
 .intro-title {
   margin: 0 0 12px;
-  font: 400 clamp(26px, 4vw, 36px) / 1.15 "Convergence", "Space Grotesk", sans-serif;
+  font:
+    400 clamp(26px, 4vw, 36px) / 1.15 "Convergence",
+    "Space Grotesk",
+    sans-serif;
   letter-spacing: 0.01em;
 }
 .intro-lede {
@@ -91,7 +100,10 @@ body {
   background: var(--bg-raised);
   border: 1px solid var(--line);
   border-radius: 16px;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 .demo:hover,
 .demo:focus-within {
@@ -119,7 +131,10 @@ body {
 }
 .demo-title {
   margin: 0;
-  font: 400 18px/1.25 "Convergence", "Space Grotesk", sans-serif;
+  font:
+    400 18px/1.25 "Convergence",
+    "Space Grotesk",
+    sans-serif;
 }
 /* The title's link covers the whole card, so the card is one big target;
    the Source link sits above it. */
@@ -159,7 +174,9 @@ body {
   padding: 5px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  font: 500 12px "Space Grotesk", sans-serif;
+  font:
+    500 12px "Space Grotesk",
+    sans-serif;
   color: var(--ink);
   text-decoration: none;
   transition: border-color 0.2s;
@@ -172,7 +189,8 @@ body {
 
 @media (max-width: 640px) {
   .home {
-    padding: calc(var(--gw-header-h) + 32px) 16px calc(var(--gw-footer-h) + 32px);
+    padding: calc(var(--gw-header-h) + 32px) 16px
+      calc(var(--gw-footer-h) + 32px);
   }
   .intro {
     margin-bottom: 28px;

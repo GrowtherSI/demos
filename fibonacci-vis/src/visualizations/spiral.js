@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import { spiralLayout, LIMITS } from '../fibonacci.js';
-import { paletteColor } from './palette.js';
+import * as THREE from "three";
+import { spiralLayout, LIMITS } from "../fibonacci.js";
+import { paletteColor } from "./palette.js";
 
 const ARC_SEGMENTS = 32;
 const STEP_SECONDS = 0.35; // time per square while growing
@@ -60,7 +60,8 @@ function build() {
 
     for (let s = 0; s <= ARC_SEGMENTS; s += 1) {
       if (k > 0 && s === 0) continue; // shared joint with the previous arc
-      const a = sq.startAngle + ((sq.endAngle - sq.startAngle) * s) / ARC_SEGMENTS;
+      const a =
+        sq.startAngle + ((sq.endAngle - sq.startAngle) * s) / ARC_SEGMENTS;
       arcPts.push(
         (sq.arcCenterX + sq.size * Math.cos(a)) * scale,
         (sq.arcCenterY + sq.size * Math.sin(a)) * scale,
@@ -70,7 +71,10 @@ function build() {
   });
 
   const arcGeometry = new THREE.BufferGeometry();
-  arcGeometry.setAttribute('position', new THREE.Float32BufferAttribute(arcPts, 3));
+  arcGeometry.setAttribute(
+    "position",
+    new THREE.Float32BufferAttribute(arcPts, 3),
+  );
   const arcMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
   arc = new THREE.Line(arcGeometry, arcMaterial);
   arcPointsPerTerm = ARC_SEGMENTS;
@@ -144,8 +148,11 @@ export function update(dt) {
   growth += dt;
   const total = squares.length * STEP_SECONDS + HOLD_SECONDS;
   if (growth > total) growth = 0;
-  showTerms(Math.max(1, Math.min(squares.length, Math.ceil(growth / STEP_SECONDS))));
-  group.rotation.y = Math.sin(performance.now() / 4000) * 0.25 * params.rotationSpeed;
+  showTerms(
+    Math.max(1, Math.min(squares.length, Math.ceil(growth / STEP_SECONDS))),
+  );
+  group.rotation.y =
+    Math.sin(performance.now() / 4000) * 0.25 * params.rotationSpeed;
 }
 
 export function fitRadius() {

@@ -4,15 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fibonacci Visualizer · Growther.si demos</title>
-    <meta name="description" content="Fibonacci patterns rendered in 3D with Three.js: golden spiral, phyllotaxis and Fibonacci sphere. An OpenSource demo by Growther.si." />
+    <meta
+      name="description"
+      content="Fibonacci patterns rendered in 3D with Three.js: golden spiral, phyllotaxis and Fibonacci sphere. An OpenSource demo by Growther.si."
+    />
     <meta name="theme-color" content="#070b12" />
     <link rel="canonical" href="https://fibonacci-vis.demos.growther.si/" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Growther.si demos" />
     <meta property="og:title" content="Fibonacci Visualizer" />
-    <meta property="og:description" content="Golden spiral, phyllotaxis and Fibonacci sphere in interactive 3D." />
-    <meta property="og:url" content="https://fibonacci-vis.demos.growther.si/" />
+    <meta
+      property="og:description"
+      content="Golden spiral, phyllotaxis and Fibonacci sphere in interactive 3D."
+    />
+    <meta
+      property="og:url"
+      content="https://fibonacci-vis.demos.growther.si/"
+    />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@GrowtherAI" />
     <link rel="stylesheet" href="/styles.css" />
@@ -21,22 +30,39 @@
     <a class="skip-link" href="#controls">Skip to controls</a>
     <div id="gw-header"></div>
 
-    <div id="scene" class="scene" aria-label="3D Fibonacci visualization" role="img"></div>
+    <div
+      id="scene"
+      class="scene"
+      aria-label="3D Fibonacci visualization"
+      role="img"
+    ></div>
 
     <div id="webgl-fallback" class="webgl-fallback" role="alert" hidden>
       <h2>3D view unavailable</h2>
       <p>
-        Your browser or device does not support WebGL, so the 3D visualizations cannot be shown.
-        The Fibonacci sequence and golden-ratio data in the info panel still work.
-        Try a current version of Chrome, Firefox, Safari or Edge with hardware acceleration enabled.
+        Your browser or device does not support WebGL, so the 3D visualizations
+        cannot be shown. The Fibonacci sequence and golden-ratio data in the
+        info panel still work. Try a current version of Chrome, Firefox, Safari
+        or Edge with hardware acceleration enabled.
       </p>
     </div>
 
-    <button id="panelToggle" class="panel-toggle" type="button" aria-expanded="false" aria-controls="controls">
+    <button
+      id="panelToggle"
+      class="panel-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="controls"
+    >
       Controls
     </button>
 
-    <form id="controls" class="controls" aria-label="Visualization controls" novalidate>
+    <form
+      id="controls"
+      class="controls"
+      aria-label="Visualization controls"
+      novalidate
+    >
       <div class="field">
         <label for="mode">Visualization</label>
         <select id="mode" name="mode">
@@ -48,17 +74,50 @@
 
       <div class="field">
         <label for="nInput" id="nLabel">N (points)</label>
-        <input id="nInput" name="n" type="number" inputmode="numeric" min="1" max="20000" step="1" value="2000" aria-describedby="validation nHint" />
+        <input
+          id="nInput"
+          name="n"
+          type="number"
+          inputmode="numeric"
+          min="1"
+          max="20000"
+          step="1"
+          value="2000"
+          aria-describedby="validation nHint"
+        />
         <label for="nRange" class="visually-hidden">N slider</label>
-        <input id="nRange" name="nRange" type="range" min="1" max="20000" step="1" value="2000" />
-        <p id="nHint" class="hint">Spiral: 1–30 squares. Phyllotaxis and sphere: 1–20000 points.</p>
+        <input
+          id="nRange"
+          name="nRange"
+          type="range"
+          min="1"
+          max="20000"
+          step="1"
+          value="2000"
+        />
+        <p id="nHint" class="hint">
+          Spiral: 1–30 squares. Phyllotaxis and sphere: 1–20000 points.
+        </p>
         <p id="validation" class="validation" aria-live="polite"></p>
       </div>
 
       <div class="field">
-        <label for="angleInput">Divergence angle: <output id="angleValue" for="angleInput">137.51°</output></label>
-        <input id="angleInput" name="angle" type="range" min="100" max="180" step="0.01" value="137.51" />
-        <button id="resetAngle" type="button" class="secondary">Reset to golden angle</button>
+        <label for="angleInput"
+          >Divergence angle:
+          <output id="angleValue" for="angleInput">137.51°</output></label
+        >
+        <input
+          id="angleInput"
+          name="angle"
+          type="range"
+          min="100"
+          max="180"
+          step="0.01"
+          value="137.51"
+        />
+        <button id="resetAngle" type="button" class="secondary">
+          Reset to golden angle
+        </button>
       </div>
 
       <div class="field">
@@ -73,12 +132,28 @@
 
       <div class="field">
         <label for="pointSize">Point size</label>
-        <input id="pointSize" name="pointSize" type="range" min="0.2" max="2" step="0.05" value="1" />
+        <input
+          id="pointSize"
+          name="pointSize"
+          type="range"
+          min="0.2"
+          max="2"
+          step="0.05"
+          value="1"
+        />
       </div>
 
       <div class="field">
         <label for="rotationSpeed">Rotation speed</label>
-        <input id="rotationSpeed" name="rotationSpeed" type="range" min="0" max="2" step="0.05" value="0.5" />
+        <input
+          id="rotationSpeed"
+          name="rotationSpeed"
+          type="range"
+          min="0"
+          max="2"
+          step="0.05"
+          value="0.5"
+        />
       </div>
 
       <div class="field buttons">
@@ -89,9 +164,18 @@
     <section id="info" class="info" aria-labelledby="infoTitle">
       <h2 id="infoTitle">Sequence</h2>
       <dl class="stats">
-        <div><dt>Terms</dt><dd id="termCount">—</dd></div>
-        <div><dt>Ratio F(k)/F(k−1)</dt><dd id="ratio">—</dd></div>
-        <div><dt>Error vs φ</dt><dd id="error">—</dd></div>
+        <div>
+          <dt>Terms</dt>
+          <dd id="termCount">—</dd>
+        </div>
+        <div>
+          <dt>Ratio F(k)/F(k−1)</dt>
+          <dd id="ratio">—</dd>
+        </div>
+        <div>
+          <dt>Error vs φ</dt>
+          <dd id="error">—</dd>
+        </div>
       </dl>
       <ol id="terms" class="terms" start="0"></ol>
     </section>

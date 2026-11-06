@@ -1,19 +1,19 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { mountDemoChrome } from '../../shared/chrome';
-import { initUI } from './ui.js';
-import * as spiral from './visualizations/spiral.js';
-import * as phyllotaxis from './visualizations/phyllotaxis.js';
-import * as sphere from './visualizations/sphere.js';
-import { createModeController } from './modeController.js';
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { mountDemoChrome } from "../../shared/chrome";
+import { initUI } from "./ui.js";
+import * as spiral from "./visualizations/spiral.js";
+import * as phyllotaxis from "./visualizations/phyllotaxis.js";
+import * as sphere from "./visualizations/sphere.js";
+import { createModeController } from "./modeController.js";
 
 const MODULES = { spiral, phyllotaxis, sphere };
 
 /** Feature-detect WebGL on a throwaway canvas BEFORE any renderer is created. */
 function hasWebGL() {
   try {
-    const probe = document.createElement('canvas');
-    const ctx = probe.getContext('webgl2') || probe.getContext('webgl');
+    const probe = document.createElement("canvas");
+    const ctx = probe.getContext("webgl2") || probe.getContext("webgl");
     return Boolean(ctx);
   } catch {
     return false;
@@ -21,11 +21,11 @@ function hasWebGL() {
 }
 
 function showFallback() {
-  document.getElementById('webgl-fallback').hidden = false;
+  document.getElementById("webgl-fallback").hidden = false;
 }
 
 function start() {
-  const container = document.getElementById('scene');
+  const container = document.getElementById("scene");
   let renderer = null; // declared first so queueChange never hits the TDZ on the fallback path
   let params = null;
   let controller = null;
@@ -50,16 +50,19 @@ function start() {
   }
 
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+    renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      powerPreference: "high-performance",
+    });
   } catch (err) {
-    console.warn('WebGLRenderer could not be created:', err);
+    console.warn("WebGLRenderer could not be created:", err);
     showFallback();
     return;
   }
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setClearColor(0x0b0d12, 1);
-  renderer.domElement.style.touchAction = 'none';
+  renderer.domElement.style.touchAction = "none";
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
@@ -89,7 +92,12 @@ function start() {
 
   // Mode switching (dispose previous -> create next) lives in modeController.js,
   // which tests/ui.test.js exercises against a real THREE.Scene.
-  controller = createModeController({ scene, modules: MODULES, params, onActivate: fitCamera });
+  controller = createModeController({
+    scene,
+    modules: MODULES,
+    params,
+    onActivate: fitCamera,
+  });
 
   function flush() {
     rafScheduled = false;
@@ -102,7 +110,12 @@ function start() {
     const active = controller.active;
     const prevFit = active && active.fitRadius ? active.fitRadius() : null;
     const result = controller.apply(change, { modeChanged });
-    if (result === 'updated' && active.fitRadius && active.fitRadius() !== prevFit) fitCamera();
+    if (
+      result === "updated" &&
+      active.fitRadius &&
+      active.fitRadius() !== prevFit
+    )
+      fitCamera();
   }
 
   function resize() {
@@ -133,22 +146,22 @@ function start() {
 }
 
 mountDemoChrome({
-  title: 'Fibonacci Visualizer',
-  story: 'demo-fibonacci-vis',
-  sourceUrl: 'https://github.com/GrowtherSI/demos/tree/main/fibonacci-vis',
+  title: "Fibonacci Visualizer",
+  story: "demo-fibonacci-vis",
+  sourceUrl: "https://github.com/GrowtherSI/demos/tree/main/fibonacci-vis",
   // How Growther.si C5 built this demo, shown by the header's info button.
   about: {
     prompt:
-      'Write a responsive web app that calculates Fibonacci patterns and displays them in creative ways with threejs.',
+      "Write a responsive web app that calculates Fibonacci patterns and displays them in creative ways with threejs.",
     hours: 5,
     costUsd: 33.38,
     passedSteps: 204,
     reworkSteps: 22,
-    tokens: '1.1M',
+    tokens: "1.1M",
     inference: [
-      { where: 'Cloud', via: 'Anthropic API' },
-      { where: 'Local', via: 'OpenClaw' },
-      { where: 'Local', via: 'LM Studio' },
+      { where: "Cloud", via: "Anthropic API" },
+      { where: "Local", via: "OpenClaw" },
+      { where: "Local", via: "LM Studio" },
     ],
     humanHours: 4,
     humanRateUsd: 50,

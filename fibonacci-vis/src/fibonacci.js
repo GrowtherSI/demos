@@ -28,12 +28,17 @@ export const LIMITS = Object.freeze({
 const MAX_EXACT_NUMBER_INDEX = 78;
 
 function assertNonNegativeInteger(value, name) {
-  if (typeof value === 'bigint') {
-    if (value < 0n) throw new RangeError(`${name} must be a non-negative integer, got ${value}`);
+  if (typeof value === "bigint") {
+    if (value < 0n)
+      throw new RangeError(
+        `${name} must be a non-negative integer, got ${value}`,
+      );
     return Number(value);
   }
-  if (typeof value !== 'number' || !Number.isInteger(value) || value < 0) {
-    throw new RangeError(`${name} must be a non-negative integer, got ${String(value)}`);
+  if (typeof value !== "number" || !Number.isInteger(value) || value < 0) {
+    throw new RangeError(
+      `${name} must be a non-negative integer, got ${String(value)}`,
+    );
   }
   return value;
 }
@@ -45,14 +50,14 @@ function assertNonNegativeInteger(value, name) {
  * @returns {bigint}
  */
 export function fibonacci(n) {
-  const idx = assertNonNegativeInteger(n, 'n');
+  const idx = assertNonNegativeInteger(n, "n");
   let a = 0n; // F(k)
   let b = 1n; // F(k+1)
   const bits = idx.toString(2);
   for (let i = 0; i < bits.length; i += 1) {
     const c = a * (2n * b - a); // F(2k)
     const d = a * a + b * b; // F(2k+1)
-    if (bits[i] === '1') {
+    if (bits[i] === "1") {
       a = d;
       b = c + d;
     } else {
@@ -69,7 +74,7 @@ export function fibonacci(n) {
  * @returns {bigint[]}
  */
 export function fibonacciSequence(count) {
-  const n = assertNonNegativeInteger(count, 'count');
+  const n = assertNonNegativeInteger(count, "count");
   const result = new Array(n);
   let a = 0n;
   let b = 1n;
@@ -97,8 +102,8 @@ export function fibonacciNumber(n) {
  * @returns {number[]}
  */
 export function ratios(count) {
-  const n = assertNonNegativeInteger(count, 'count');
-  if (n < 1) throw new RangeError('count must be at least 1');
+  const n = assertNonNegativeInteger(count, "count");
+  if (n < 1) throw new RangeError("count must be at least 1");
   const result = new Array(n);
   let a = 1n; // F(k)
   let b = 1n; // F(k+1)
@@ -117,8 +122,8 @@ export function ratios(count) {
  * @returns {number}
  */
 export function convergenceError(k) {
-  const idx = assertNonNegativeInteger(k, 'k');
-  if (idx < 1) throw new RangeError('k must be at least 1');
+  const idx = assertNonNegativeInteger(k, "k");
+  if (idx < 1) throw new RangeError("k must be at least 1");
   const r = ratios(idx);
   return Math.abs(r[idx - 1] - PHI);
 }
@@ -128,23 +133,34 @@ export function convergenceError(k) {
  * Accepts integer Numbers and integer strings (surrounding whitespace allowed).
  * @returns {{ok:boolean, value:any, error?:string}}
  */
-export function validateInteger(value, { min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER, name = 'Value' } = {}) {
+export function validateInteger(
+  value,
+  {
+    min = Number.MIN_SAFE_INTEGER,
+    max = Number.MAX_SAFE_INTEGER,
+    name = "Value",
+  } = {},
+) {
   let v = value;
-  if (typeof v === 'string') {
+  if (typeof v === "string") {
     if (/^\s*-?\d+(\.\d+)?\s*$/.test(v)) {
       v = parseFloat(v);
     } else {
       return { ok: false, value, error: `${name} must be a numeric string` };
     }
   }
-  if (typeof v !== 'number' || !Number.isFinite(v)) {
+  if (typeof v !== "number" || !Number.isFinite(v)) {
     return { ok: false, value, error: `${name} cannot be NaN or Infinity` };
   }
   if (!Number.isInteger(v)) {
     return { ok: false, value, error: `${name} must be an integer` };
   }
   if (v < min || v > max) {
-    return { ok: false, value, error: `${name} must be between ${min} and ${max}` };
+    return {
+      ok: false,
+      value,
+      error: `${name} must be between ${min} and ${max}`,
+    };
   }
   return { ok: true, value: v };
 }
@@ -157,10 +173,10 @@ export function validateInteger(value, { min = Number.MIN_SAFE_INTEGER, max = Nu
  */
 export function formatBigInt(b, maxDigits = 20) {
   const s = b.toString();
-  const negative = s.startsWith('-');
+  const negative = s.startsWith("-");
   const digits = negative ? s.slice(1) : s;
   if (digits.length > maxDigits) {
-    return `${negative ? '-' : ''}${digits.slice(0, maxDigits)}…(${digits.length} digits)`;
+    return `${negative ? "-" : ""}${digits.slice(0, maxDigits)}…(${digits.length} digits)`;
   }
   return s;
 }
@@ -180,8 +196,16 @@ export function phyllotaxisPoint(i, c = 1, angleRad = GOLDEN_ANGLE_RAD) {
  * @returns {{x:number, y:number, z:number}}
  */
 export function fibonacciSpherePoint(i, count) {
-  if (!Number.isInteger(count) || count < 1 || !Number.isInteger(i) || i < 0 || i >= count) {
-    throw new RangeError(`fibonacciSpherePoint: need integers 0 <= i < count, got i=${i}, count=${count}`);
+  if (
+    !Number.isInteger(count) ||
+    count < 1 ||
+    !Number.isInteger(i) ||
+    i < 0 ||
+    i >= count
+  ) {
+    throw new RangeError(
+      `fibonacciSpherePoint: need integers 0 <= i < count, got i=${i}, count=${count}`,
+    );
   }
   const y = 1 - (2 * (i + 0.5)) / count; // uniform in y => equal-area bands
   const radius = Math.sqrt(Math.max(0, 1 - y * y));
@@ -199,9 +223,11 @@ export function fibonacciSpherePoint(i, count) {
  * @returns {Array<{size:number,x:number,y:number,arcCenterX:number,arcCenterY:number,startAngle:number,endAngle:number}>}
  */
 export function spiralLayout(nTerms) {
-  const n = assertNonNegativeInteger(nTerms, 'nTerms');
+  const n = assertNonNegativeInteger(nTerms, "nTerms");
   if (n > MAX_EXACT_NUMBER_INDEX) {
-    throw new RangeError(`nTerms must be <= ${MAX_EXACT_NUMBER_INDEX} so sizes stay exact`);
+    throw new RangeError(
+      `nTerms must be <= ${MAX_EXACT_NUMBER_INDEX} so sizes stay exact`,
+    );
   }
   const result = [];
   let minX = 0;
@@ -236,13 +262,21 @@ export function spiralLayout(nTerms) {
       y = minY - size;
     }
     if (dir === 0) {
-      cx = x; cy = y + size; start = -Math.PI / 2;
+      cx = x;
+      cy = y + size;
+      start = -Math.PI / 2;
     } else if (dir === 1) {
-      cx = x; cy = y; start = 0;
+      cx = x;
+      cy = y;
+      start = 0;
     } else if (dir === 2) {
-      cx = x + size; cy = y; start = Math.PI / 2;
+      cx = x + size;
+      cy = y;
+      start = Math.PI / 2;
     } else {
-      cx = x + size; cy = y + size; start = Math.PI;
+      cx = x + size;
+      cy = y + size;
+      start = Math.PI;
     }
     result.push({
       size,
@@ -254,7 +288,10 @@ export function spiralLayout(nTerms) {
       endAngle: start + Math.PI / 2,
     });
     if (k === 1) {
-      minX = 0; minY = 0; maxX = 1; maxY = 1;
+      minX = 0;
+      minY = 0;
+      maxX = 1;
+      maxY = 1;
     } else {
       minX = Math.min(minX, x);
       minY = Math.min(minY, y);

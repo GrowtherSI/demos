@@ -6,11 +6,11 @@ An interactive 3D look at the Fibonacci sequence and the golden ratio, built wit
 [three.js](https://threejs.org). It computes exact Fibonacci numbers with
 `BigInt`, shows F(k)/F(k−1) converging on φ, and draws three classic patterns:
 
-| Mode | What you see | Animation |
-| --- | --- | --- |
-| **Golden spiral** | Squares of side F(k) tiled counter-clockwise, joined by quarter-circle arcs | Grows term by term, with a gentle sway |
-| **Phyllotaxis** | A sunflower head: point *i* at radius √i, turned by the divergence angle | Grows outward; drag the angle slider to see why 137.5° packs best |
-| **Fibonacci sphere** | Points spread evenly over a sphere along a golden-angle spiral | Grows, then rotates slowly |
+| Mode                 | What you see                                                                | Animation                                                         |
+| -------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **Golden spiral**    | Squares of side F(k) tiled counter-clockwise, joined by quarter-circle arcs | Grows term by term, with a gentle sway                            |
+| **Phyllotaxis**      | A sunflower head: point _i_ at radius √i, turned by the divergence angle    | Grows outward; drag the angle slider to see why 137.5° packs best |
+| **Fibonacci sphere** | Points spread evenly over a sphere along a golden-angle spiral              | Grows, then rotates slowly                                        |
 
 Four palettes, adjustable point size and rotation speed, orbit/zoom with mouse
 or touch, and a sequence panel listing the last 40 terms.
@@ -24,15 +24,15 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
-| Script | What it does |
-| --- | --- |
-| `npm run dev` | Vite dev server with hot reload |
-| `npm test` | Vitest: the math module and the UI / mode-switching suite |
-| `npm run perf` | Timing budget for the math behind one N update (< 200 ms) |
-| `npm run build` | Production build into `dist/` |
-| `npm run preview` | Serve `dist/` locally |
-| `npm run cf:dev` | Build, then run the production Worker locally (`wrangler dev`) |
-| `npm run deploy` | Build and deploy to Cloudflare (maintainers) |
+| Script            | What it does                                                   |
+| ----------------- | -------------------------------------------------------------- |
+| `npm run dev`     | Vite dev server with hot reload                                |
+| `npm test`        | Vitest: the math module and the UI / mode-switching suite      |
+| `npm run perf`    | Timing budget for the math behind one N update (< 200 ms)      |
+| `npm run build`   | Production build into `dist/`                                  |
+| `npm run preview` | Serve `dist/` locally                                          |
+| `npm run cf:dev`  | Build, then run the production Worker locally (`wrangler dev`) |
+| `npm run deploy`  | Build and deploy to Cloudflare (maintainers)                   |
 
 ## How it is put together
 
@@ -64,11 +64,11 @@ tests/                 Vitest suites and the perf budget check
 
 ### Input limits
 
-| Context | N means | Range |
-| --- | --- | --- |
-| Golden spiral | number of squares | 1–30 |
-| Phyllotaxis, sphere | number of points | 1–20,000 |
-| Sequence panel | terms F(0)…F(N) computed | capped at 1,000 |
+| Context             | N means                  | Range           |
+| ------------------- | ------------------------ | --------------- |
+| Golden spiral       | number of squares        | 1–30            |
+| Phyllotaxis, sphere | number of points         | 1–20,000        |
+| Sequence panel      | terms F(0)…F(N) computed | capped at 1,000 |
 
 Invalid input shows an inline message and keeps the last valid value. Each mode
 remembers its own N.
