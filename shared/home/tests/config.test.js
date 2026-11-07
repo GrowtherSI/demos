@@ -1,6 +1,7 @@
 /**
  * vite.config.js: the demo-cards plugin that renders demos.json into
- * index.html, and the chunking that keeps React cacheable on its own.
+ * index.html, and the chunking that keeps React and three.js cacheable on
+ * their own.
  */
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -56,9 +57,12 @@ describe("demo-cards plugin", () => {
 describe("build config", () => {
   const { manualChunks } = config.build.rollupOptions.output;
 
-  it("splits React into its own chunk and leaves the rest to Vite", () => {
+  it("splits React and three.js into their own chunks and leaves the rest to Vite", () => {
     expect(manualChunks("/x/node_modules/react-dom/client.js")).toBe("react");
     expect(manualChunks("/x/node_modules/react/index.js")).toBe("react");
+    expect(manualChunks("/x/node_modules/three/build/three.module.js")).toBe(
+      "three",
+    );
     expect(manualChunks("/x/src/main.js")).toBeUndefined();
   });
 

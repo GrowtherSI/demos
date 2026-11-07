@@ -7,9 +7,12 @@ export default mergeConfig(
   defineConfig({
     plugins: [demoCards()],
     build: {
+      // three.js alone is ~500 kB minified; split it so the app code caches separately.
+      chunkSizeWarningLimit: 700,
       rollupOptions: {
         output: {
           manualChunks(id) {
+            if (id.includes("node_modules/three")) return "three";
             if (id.includes("node_modules/react")) return "react";
             return undefined;
           },
