@@ -16,6 +16,7 @@ export default defineConfig({
     include: [
       "shared/chrome/**/*.test.{js,ts,tsx}",
       "shared/worker/**/*.test.{js,ts}",
+      "shared/seo/**/*.test.{js,mjs}",
       "shared/downloadKit/**/*.test.{ts,tsx}",
     ],
     environment: "node",
@@ -28,7 +29,11 @@ export default defineConfig({
     hookTimeout: 15000,
     coverage: {
       provider: "v8",
-      include: ["shared/chrome/**/*.{ts,tsx,mjs}", "shared/worker/**/*.js"],
+      include: [
+        "shared/chrome/**/*.{ts,tsx,mjs}",
+        "shared/worker/**/*.js",
+        "shared/seo/**/*.{js,mjs}",
+      ],
       exclude: ["**/*.test.*"],
       /*
        * 100%, and it stays there. Everything measured here is code this

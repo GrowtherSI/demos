@@ -68,6 +68,10 @@ jobs:
       # Runs with coverage, so the app's 100% floor is enforced here too.
       - run: npm test
       - run: npm run build
+      # The build generates sitemap.xml, robots.txt, llms.txt, llms-full.txt and
+      # the page's JSON-LD (shared/seo); this confirms they are there and agree.
+      - name: SEO files (sitemap, robots, llms.txt, JSON-LD)
+        run: node "$GITHUB_WORKSPACE/scripts/check-seo.mjs" dist
       - name: Deploy
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: npx wrangler deploy

@@ -46,6 +46,28 @@ which the chrome keeps current on `<html>`.
 
 The listing passes `listing: true`, which leaves out the All demos button.
 
+## seo/
+
+What crawlers and LLMs fetch, generated rather than kept by hand. `vite.mjs`
+is a Vite plugin that `chrome/vite.mjs` adds to every demo; it reads the
+app's `index.html` (title, description, canonical, `og:title`),
+`package.json` (`repository.directory`, for the Source links) and `README.md`,
+and emits into `dist/`:
+
+| File            | What it is                                                                           |
+| --------------- | ------------------------------------------------------------------------------------ |
+| `sitemap.xml`   | This page; on the listing, every demo too                                            |
+| `robots.txt`    | Everyone allowed, the AI agents named, the sitemap(s), a pointer to `llms.txt`       |
+| `llms.txt`      | The [llmstxt.org](https://llmstxt.org) map: what this is, where it runs, its source  |
+| `llms-full.txt` | `llms.txt` plus the README, for a pipeline that fetches once                         |
+| `<head>`        | A JSON-LD graph: WebApplication + SoftwareSourceCode (CollectionPage on the listing) |
+
+The dev server serves the same files from memory, so `/llms.txt` on
+`localhost:5173` is what deploys. `render.js` holds the pure renderers; the
+Growther.si URLs in it are checked against the chrome's. A demo adds facts the
+page does not state with `demoViteConfig({ seo: { app: { … } } })`; the
+listing passes `{ demos, readme }`.
+
 ## home/
 
 demos.growther.si: a static page that lists every demo, wearing the same
