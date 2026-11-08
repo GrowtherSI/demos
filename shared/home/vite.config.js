@@ -1,9 +1,16 @@
+import { readFileSync } from "node:fs";
 import { defineConfig, mergeConfig } from "vite";
 import { demoViteConfig } from "../chrome/vite.mjs";
 import { demoCards } from "./demoCards.js";
 
+const demos = JSON.parse(
+  readFileSync(new URL("./demos.json", import.meta.url), "utf8"),
+);
+
 export default mergeConfig(
-  demoViteConfig(),
+  // The listing's sitemap and llms.txt name every demo; its README is the
+  // repository's.
+  demoViteConfig({ seo: { demos, readme: "../../README.md" } }),
   defineConfig({
     plugins: [demoCards()],
     build: {

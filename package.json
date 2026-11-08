@@ -24,6 +24,7 @@
     "apps:install": "node scripts/apps.mjs ci",
     "check:download-kit": "node scripts/check-download-kit.mjs",
     "check:test-quality": "node scripts/check-test-quality.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
     "prepare": "husky"
   },
   "devDependencies": {

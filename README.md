@@ -16,6 +16,7 @@ of `demos.growther.si` — browse them all at
 shared/chrome/       the sticky Growther.si header and footer every demo mounts
 shared/downloadKit/  the Download button's logic and modal — mirrored verbatim from growther.si
 shared/worker/       the Worker every demo deploys with (static assets + /v1/version)
+shared/seo/          the Vite plugin that writes every site's sitemap.xml, robots.txt, llms.txt and JSON-LD
 shared/home/         demos.growther.si itself: the listing of every demo
 ```
 
@@ -37,6 +38,14 @@ To run a demo, `cd` into it and follow its README — typically
    `index.html`, call `mountDemoChrome({ title, story, sourceUrl })` from your
    entry module, and lay the app out between `--gw-header-h` and
    `--gw-footer-h`.
+   Give `index.html` a `<title>`, a `<meta name="description">`, a
+   `<link rel="canonical">` to `https://<name>.demos.growther.si/` and an
+   `og:title` with the short name, and `package.json` a
+   `repository.directory`: the build derives the demo's `sitemap.xml`,
+   `robots.txt`, `llms.txt`, `llms-full.txt` (with the README) and JSON-LD from
+   them (`shared/seo`), and CI's `check:seo` fails the build without them.
+   Pass `demoViteConfig({ seo: { app: { applicationCategory, … } } })` for the
+   facts only the demo knows.
 3. Copy `fibonacci-vis/wrangler.jsonc` and `fibonacci-vis/public/_headers`, and
    change the Worker `name` and the route to `<name>.demos.growther.si`.
 4. Add the directory to the matrix in `.github/workflows/demos.yml` and to the
@@ -57,12 +66,13 @@ npm install              # root tooling; installs the git hooks
 npm run apps:install     # npm ci in every app
 ```
 
-| Script                       | What it does                                                              |
-| ---------------------------- | ------------------------------------------------------------------------- |
-| `npm run lint`               | ESLint (zero warnings), `tsc`, and the download kit's manifest check      |
-| `npm test`                   | The `shared/` suite, then every app's suite — each at 100% coverage       |
-| `npm run format`             | Prettier, repository-wide (`shared/downloadKit` excluded: it is a mirror) |
-| `npm run check:test-quality` | Fails on `@ts-nocheck` tests or tests with only existence assertions      |
+| Script                       | What it does                                                                     |
+| ---------------------------- | -------------------------------------------------------------------------------- |
+| `npm run lint`               | ESLint (zero warnings), `tsc`, and the download kit's manifest check             |
+| `npm test`                   | The `shared/` suite, then every app's suite — each at 100% coverage              |
+| `npm run format`             | Prettier, repository-wide (`shared/downloadKit` excluded: it is a mirror)        |
+| `npm run check:test-quality` | Fails on `@ts-nocheck` tests or tests with only existence assertions             |
+| `npm run check:seo <dist>`   | After a build: the sitemap, robots.txt, llms.txt and JSON-LD are there and agree |
 
 **pre-commit** checks staged `package.json` files against their lockfiles,
 runs Prettier on staged files, then `npm run lint`. **pre-push** checks every

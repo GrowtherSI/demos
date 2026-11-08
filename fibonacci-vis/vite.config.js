@@ -2,7 +2,14 @@ import { defineConfig, mergeConfig } from "vite";
 import { demoViteConfig } from "../shared/chrome/vite.mjs";
 
 export default mergeConfig(
-  demoViteConfig(),
+  demoViteConfig({
+    seo: {
+      app: {
+        applicationCategory: "EducationalApplication",
+        browserRequirements: "Requires JavaScript and WebGL",
+      },
+    },
+  }),
   defineConfig({
     build: {
       // three.js alone is ~500 kB minified; split it so the app code caches separately.

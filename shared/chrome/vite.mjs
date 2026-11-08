@@ -14,13 +14,21 @@
  *   no React plugin needed.
  * - proxy: the download kit fetches same-origin /v1/version. In production the
  *   demo's Worker answers it; in dev, growther.si does.
+ * - seo: the plugin from ../seo/vite.mjs, which gives the demo its
+ *   sitemap.xml, robots.txt, llms.txt, llms-full.txt and JSON-LD, all read
+ *   from its index.html, package.json and README. `seo` is passed through to
+ *   it: { app } adds facts to the demo's WebApplication structured data (its
+ *   applicationCategory, browserRequirements, …); the listing passes
+ *   { demos, readme }.
  */
 import { fileURLToPath } from "node:url";
+import { seoFiles } from "../seo/vite.mjs";
 
 const SHARED = fileURLToPath(new URL("..", import.meta.url));
 
-export function demoViteConfig() {
+export function demoViteConfig({ seo } = {}) {
   return {
+    plugins: [seoFiles(seo)],
     resolve: { dedupe: ["react", "react-dom"] },
     oxc: { jsx: { runtime: "automatic" } },
     server: {
