@@ -248,11 +248,6 @@ export function DemoFooter() {
           </a>
         ))}
       </nav>
-      <GuideLinks
-        pick={DEMO_GUIDES}
-        className="gw-footer-links gw-footer-more"
-        style={{ flexBasis: "100%" }}
-      />
       <span className="gw-footer-more">
         <SocialLinks variant="bare" />
       </span>
@@ -268,6 +263,11 @@ export function DemoFooter() {
         <i>{tag.em}</i>
         {tag.post}”
       </span>
+      <GuideLinks
+        pick={DEMO_GUIDES}
+        className="gw-footer-links gw-footer-more"
+        style={{ flexBasis: "100%" }}
+      />
       <button
         type="button"
         className="gw-footer-toggle"
