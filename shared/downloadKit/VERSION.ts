@@ -1,5 +1,5 @@
 /**
- * ── SHARED DOWNLOAD KIT ── v1.10.5 ────────────────────────────────────────────
+ * ── SHARED DOWNLOAD KIT ── v1.11.0 ────────────────────────────────────────────
  * CANONICAL: growther-marketing/shared/downloadKit/    (edit here)
  * MIRROR:    growther-docs/shared/downloadKit/         (never edit — generated)
  * PAIRED WITH: the mirror above. These two directories are ONE component with
@@ -25,6 +25,7 @@
  *   PATCH  fix or copy change, no contract movement.
  *
  * CHANGELOG (newest first — keep it short; git carries the detail):
+ *   1.11.0  Guides.tsx: the growther.si landing pages as one list + GuideLinks footer row for the docs and demos sites.
  *   1.10.5  Updated asset hosts and test URLs to growther.si.
  *  1.10.4  Updated default siteUrl to https://growther.si and added growther.si to ASSET_HOSTS.
  *  1.10.3  Update text name to Growther.si across social aria-labels and logo alt text.
@@ -83,7 +84,7 @@
  *          published C5 release and either start that build or open the
  *          newsletter modal (with the 𝕏 link) when there is nothing to give.
  */
-export const DOWNLOAD_KIT_VERSION = "1.10.5";
+export const DOWNLOAD_KIT_VERSION = "1.11.0";
 
 /** Where the canonical copy lives, for anything that wants to say so out loud. */
 export const DOWNLOAD_KIT_CANONICAL = "growther-marketing/shared/downloadKit/";

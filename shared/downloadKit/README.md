@@ -1,4 +1,4 @@
-# Shared download kit — v1.10.5
+# Shared download kit — v1.11.0
 
 **Read this before changing anything in this directory.**
 
@@ -36,16 +36,17 @@ when there is nothing for them — announces a miss on `window`, which the
 `<DownloadGate/>` mounted at each app's root turns into the newsletter modal
 (launch notes by email, plus 𝕏 [@GrowtherAI](https://x.com/GrowtherAI)).
 
-| File                | Role                                                                                                                                                        |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `release.ts`        | Pure logic: validate the catalog, detect the platform, pick an asset. No DOM, no React, **no imports** — the Workers use it too.                            |
-| `client.ts`         | Browser glue: one catalog fetch per page, `requestDownload`, the miss event.                                                                                |
-| `DownloadModal.tsx` | The modal itself. Newsletter POST and Turnstile are **injected**, never imported — that is what lets one component serve two origins.                       |
-| `DownloadGate.tsx`  | Mount once per app; renders nothing until a miss.                                                                                                           |
-| `Socials.tsx`       | The one list of Growther.si's social accounts + the component that renders them at any scale. Used by the modal, BOTH footers, and the marketing About tab. |
-| `turnstile.ts`      | The (public) site-key loader both sites' forms use.                                                                                                         |
-| `VERSION.ts`        | `DOWNLOAD_KIT_VERSION` + the changelog. Bump on every change.                                                                                               |
-| `MANIFEST.sha256`   | Generated. The machine half of the pairing contract.                                                                                                        |
+| File                           | Role                                                                                                                                                                                                                                          |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `release.ts`                   | Pure logic: validate the catalog, detect the platform, pick an asset. No DOM, no React, **no imports** — the Workers use it too.                                                                                                              |
+| `client.ts`                    | Browser glue: one catalog fetch per page, `requestDownload`, the miss event.                                                                                                                                                                  |
+| `DownloadModal.tsx`            | The modal itself. Newsletter POST and Turnstile are **injected**, never imported — that is what lets one component serve two origins.                                                                                                         |
+| `DownloadGate.tsx`             | Mount once per app; renders nothing until a miss.                                                                                                                                                                                             |
+| `Socials.tsx`                  | The one list of Growther.si's social accounts + the component that renders them at any scale. Used by the modal, BOTH footers, and the marketing About tab.                                                                                   |
+| `guides.ts` + `GuideLinks.tsx` | The growther.si guides (SEO landing pages) as one list (data, no JSX) + `GuideLinks`, the short "Guides:" footer row docs.growther.si and demos.growther.si carry. growther.si reads its own richer table; a test there pins this list to it. |
+| `turnstile.ts`                 | The (public) site-key loader both sites' forms use.                                                                                                                                                                                           |
+| `VERSION.ts`                   | `DOWNLOAD_KIT_VERSION` + the changelog. Bump on every change.                                                                                                                                                                                 |
+| `MANIFEST.sha256`              | Generated. The machine half of the pairing contract.                                                                                                                                                                                          |
 
 ## Rules for changing it
 

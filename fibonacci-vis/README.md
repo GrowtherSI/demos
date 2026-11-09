@@ -15,6 +15,9 @@ An interactive 3D look at the Fibonacci sequence and the golden ratio, built wit
 Four palettes, adjustable point size and rotation speed, orbit/zoom with mouse
 or touch, and a sequence panel listing the last 40 terms.
 
+Built with [Growther.si C5](https://growther.si) from a single request — see
+[how one prompt becomes a whole team of agents](https://growther.si/multi-agent-orchestration).
+
 ## Run it
 
 Requires Node.js 20.19 or later.

@@ -133,6 +133,24 @@ describe("DemoHeader", () => {
 });
 
 describe("DemoFooter", () => {
+  it("links six growther.si guides as real cross-site links", () => {
+    render(<DemoFooter />);
+    const nav = screen.getByRole("navigation", {
+      name: "Guides on growther.si",
+    });
+    const hrefs = Array.from(nav.querySelectorAll("a")).map((a) =>
+      a.getAttribute("href"),
+    );
+    expect(hrefs).toEqual([
+      "https://growther.si/local-ai-agent",
+      "https://growther.si/local-llm-agent",
+      "https://growther.si/self-hosted-ai-agent",
+      "https://growther.si/multi-agent-orchestration",
+      "https://growther.si/openclaw-alternative",
+      "https://growther.si/cloud-ai-agent-alternative",
+    ]);
+  });
+
   it("links Docs and every growther.si section, as hash-routed modals", () => {
     render(<DemoFooter />);
     const nav = screen.getByRole("navigation", { name: "Growther.si" });

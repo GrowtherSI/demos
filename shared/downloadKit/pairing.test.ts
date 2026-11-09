@@ -1,5 +1,5 @@
 /**
- * ── SHARED DOWNLOAD KIT ── v1.10.5 ────────────────────────────────────────────
+ * ── SHARED DOWNLOAD KIT ── v1.11.0 ────────────────────────────────────────────
  * The pairing contract, enforced. This test runs in BOTH growther-marketing and
  * growther-docs (it is part of the mirrored directory), so each repo proves its
  * own copy is intact and correctly labelled without being able to see the other.

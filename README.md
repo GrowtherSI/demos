@@ -27,6 +27,11 @@ can copy a demo's directory (plus `shared/chrome`, `shared/downloadKit` and
 To run a demo, `cd` into it and follow its README — typically
 `npm install && npm run dev`.
 
+New to C5? The guides on growther.si explain the platform these demos come
+from: [what a local AI agent is](https://growther.si/local-ai-agent),
+[how one prompt becomes a whole team of agents](https://growther.si/multi-agent-orchestration),
+and [turning Ollama, LM Studio or llama.cpp into agents](https://growther.si/local-llm-agent).
+
 ## Adding a demo
 
 1. Create `<name>/` with its own `package.json` (add `react`, `react-dom`,

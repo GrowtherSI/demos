@@ -19,7 +19,7 @@
  * growther.si and docs.growther.si.
  */
 import { useLayoutEffect, useRef, useState } from "react";
-import { requestDownload, SocialLinks } from "../downloadKit";
+import { GuideLinks, requestDownload, SocialLinks } from "../downloadKit";
 import { AboutButton, type DemoAbout } from "./AboutModal";
 import logoUrl from "./assets/logo.png";
 
@@ -215,6 +215,18 @@ const FOOT_LINKS: [string, string][] = [
   ["dpa", "DPA"],
 ];
 
+/** The growther.si guides this footer links — the six a developer evaluating
+ *  a demo is most likely to want next. Real cross-site links; the list lives
+ *  in the shared kit so a renamed page cannot strand it. */
+const DEMO_GUIDES = [
+  "local-ai-agent",
+  "local-llm-agent",
+  "self-hosted-ai-agent",
+  "multi-agent-orchestration",
+  "openclaw-alternative",
+  "cloud-ai-agent-alternative",
+] as const;
+
 export function DemoFooter() {
   const [tag] = useState(
     () => FOOT_TAGS[Math.floor(Math.random() * FOOT_TAGS.length)]!,
@@ -236,6 +248,11 @@ export function DemoFooter() {
           </a>
         ))}
       </nav>
+      <GuideLinks
+        pick={DEMO_GUIDES}
+        className="gw-footer-links gw-footer-more"
+        style={{ flexBasis: "100%" }}
+      />
       <span className="gw-footer-more">
         <SocialLinks variant="bare" />
       </span>

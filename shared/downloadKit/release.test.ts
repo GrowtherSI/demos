@@ -1,5 +1,5 @@
 /**
- * ── SHARED DOWNLOAD KIT ── v1.10.5 ────────────────────────────────────────────
+ * ── SHARED DOWNLOAD KIT ── v1.11.0 ────────────────────────────────────────────
  * Test for the mirrored kit — it runs in BOTH growther-marketing and
  * growther-docs. Edit the canonical copy (growther-marketing) and run
  * `npm run sync:download-kit`; see ./README.md.

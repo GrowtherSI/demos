@@ -1,5 +1,5 @@
 /**
- * ── SHARED DOWNLOAD KIT ── v1.10.5 ────────────────────────────────────────────
+ * ── SHARED DOWNLOAD KIT ── v1.11.0 ────────────────────────────────────────────
  * CANONICAL: growther-marketing/shared/downloadKit/   (edit here)
  * MIRROR:    growther-docs/shared/downloadKit/        (never edit — generated)
  * PAIRED: these two directories are ONE component with two deployments and are
@@ -83,5 +83,13 @@ export {
   type SocialKey,
   type SocialLinksProps,
 } from "./Socials";
+export {
+  GUIDES,
+  GUIDES_ORIGIN,
+  guideBySlug,
+  guideUrl,
+  type Guide,
+} from "./guides";
+export { GuideLinks } from "./GuideLinks";
 export { DownloadGate, type DownloadGateProps } from "./DownloadGate";
 export { DownloadStartedPanel } from "./DownloadStartedPanel";
