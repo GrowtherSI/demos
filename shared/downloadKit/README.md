@@ -1,4 +1,4 @@
-# Shared download kit — v1.11.0
+# Shared download kit — v1.11.2
 
 **Read this before changing anything in this directory.**
 

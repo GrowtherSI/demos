@@ -1,5 +1,5 @@
 /**
- * ── SHARED DOWNLOAD KIT ── v1.11.0 ────────────────────────────────────────────
+ * ── SHARED DOWNLOAD KIT ── v1.11.2 ────────────────────────────────────────────
  * CANONICAL: growther-marketing/shared/downloadKit/   (edit here)
  * MIRROR:    growther-docs/shared/downloadKit/        (never edit — generated)
  * PAIRED: these two directories are ONE component with two deployments and are
@@ -100,6 +100,16 @@ export const GUIDES: readonly Guide[] = [
     text: "putting a hard cap on what your AI agents spend",
   },
   {
+    slug: "ai-agent-guardrails",
+    label: "AI agent guardrails",
+    text: "deciding what an AI agent may do alone, and what must ask",
+  },
+  {
+    slug: "ai-agent-that-learns",
+    label: "AI agent that learns",
+    text: "an AI agent that learns from real graded results",
+  },
+  {
     slug: "ai-agent-for-small-business",
     label: "AI for small business",
     text: "an AI agent team for a small business",
@@ -108,6 +118,11 @@ export const GUIDES: readonly Guide[] = [
     slug: "ai-agent-for-researchers",
     label: "AI for researchers",
     text: "an AI agent for researchers that keeps data local",
+  },
+  {
+    slug: "ai-agent-for-teachers",
+    label: "AI for teachers",
+    text: "an AI agent for teachers and homeschooling families",
   },
   {
     slug: "ai-agent-for-consultants",
